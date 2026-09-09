@@ -1,0 +1,5 @@
+{
+  "name": "multiplatform",
+  "_note": "Один рендер на IG + TikTok + Shorts: безопасная зона взята профилем 'conservative' из styles/platform_zones.json (максимум по трём площадкам). Движок читает зону из стиля, поэтому автоподбор кегля и рамка субтитра в meta['sub_box'] сжимаются под неё сами.",
+  "safe_zone": "conservative"
+}

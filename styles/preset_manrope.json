@@ -1,0 +1,11 @@
+{
+  "name": "manrope",
+  "font_family": {
+    "name": "Manrope",
+    "variable": "fonts/Manrope/Manrope-Variable.ttf",
+    "static": {},
+    "weights": {"Regular": 400, "SemiBold": 600, "Bold": 700, "Black": 800},
+    "axes": {},
+    "license": "fonts/Manrope/OFL.txt"
+  }
+}

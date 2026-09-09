@@ -1,0 +1,40 @@
+{
+  "name": "brand-premium-dark",
+  "_title": "Премиум тёмный",
+  "_description": "Дорогая сдержанность: кириллическая гарнитура Golos Text, субтитр на почти чёрной прямоугольной плашке с малым скруглением, тёплый оранжевый акцент, караоке-режим reveal (слова появляются по одному, без прыжков), длинные планы.",
+  "_audience": "недвижимость, автомобили, ювелирка, часы, дорогие путешествия, private-услуги",
+  "_note": "Golos Text — кириллица от Paratype, вариативная ось wght 400..900, поэтому Black берётся честным 900. Поля с ведущим «_» — витрина для мастера установки, схемой style.py не читаются.",
+
+  "font_family": {
+    "name": "Golos Text",
+    "variable": "fonts/GolosText/GolosText-Variable.ttf",
+    "static": {},
+    "weights": {"Regular": 400, "SemiBold": 600, "Bold": 700, "Black": 900},
+    "axes": {},
+    "license": "fonts/GolosText/OFL.txt"
+  },
+
+  "sub_size_base": 82,
+  "sub_size_split": 66,
+  "sub_chunk": {"max_words": 4, "max_chars": 30},
+  "sub_style": {
+    "kind": "boxed",
+    "fill": [240, 236, 230],
+    "stroke_w": 0,
+    "shadow": false,
+    "line_gap": 1.20,
+    "box_fill": [10, 10, 12],
+    "box_alpha": 205,
+    "box_pad_x": 36,
+    "box_pad_y": 20,
+    "box_radius": 4,
+    "split_uses_clean": false
+  },
+
+  "accent": "orange",
+  "_accent_family": "E4-57: запасные акценты ТОГО ЖЕ тёплого оранжевого (тон бренда сохранён, меняется светлота) — жжёная охра и тёмно-коричная. Берутся, только если брендовый оранжевый не набирает 3:1 к фону кадра.",
+  "accent_family": [[186, 81, 15], [112, 49, 9]],
+  "karaoke": {"enabled": true, "style": "reveal", "max_words": 4, "max_chars": 28, "scale_pop": 1.03},
+  "pace": {"min_scene": 5.0, "max_scene": 10.0, "broll_share": 0.55, "max_series": 3},
+  "punch": {"scale": 1.05, "ramp": 8, "hold": 2.6}
+}

@@ -1,0 +1,8 @@
+{
+  "name": "subtitle-clean",
+  "sub_style": {
+    "kind": "clean",
+    "stroke_w": 0,
+    "shadow": false
+  }
+}

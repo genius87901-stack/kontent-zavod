@@ -1,0 +1,71 @@
+{
+  "_note": "ЗАПИСАННЫЙ ОБРАЗЕЦ ответа Upload-Post GET /api/uploadposts/post-analytics/cached?user=demo_profile. НЕ живые данные: цифры выдуманы, форма ответа собрана по openapi.json docs.upload-post.com (source/posts[]/next_cursor/has_more, у поста post_id/platform/captured_at/metrics/post_url/media_type/upload_timestamp). Этот эндпоинт НЕ дёргает площадки и НЕ попадает под лимит 100 запросов / 5 минут. Имена метрик внутри metrics у площадок разные — на то и провайдеры с normalize().",
+  "source": "snapshot_cache",
+  "posts": [
+    {
+      "post_id": "17912345678901234",
+      "platform": "instagram",
+      "captured_at": "2026-08-01T21:14:03+00:00",
+      "post_url": "https://www.instagram.com/p/DABC123xyz/",
+      "media_type": "CAROUSEL_ALBUM",
+      "upload_timestamp": "2026-07-30T09:00:12+00:00",
+      "metrics": {
+        "views": 45230,
+        "reach": 41880,
+        "impressions": 51022,
+        "likes": 1204,
+        "comments": 47,
+        "saved": 212,
+        "shares": 168,
+        "profile_visits": 331,
+        "website_clicks": 91,
+        "follows": 58,
+        "total_interactions": 1631
+      }
+    },
+    {
+      "post_id": "17998877665544332",
+      "platform": "instagram",
+      "captured_at": "2026-08-01T21:14:03+00:00",
+      "post_url": "https://www.instagram.com/reel/DXYZ987abc/",
+      "media_type": "REELS",
+      "upload_timestamp": "2026-07-27T18:30:00+00:00",
+      "metrics": {
+        "views": 128400,
+        "reach": 119050,
+        "impressions": 141300,
+        "likes": 5310,
+        "comments": 214,
+        "saved": 903,
+        "shares": 1120,
+        "profile_visits": 1490,
+        "website_clicks": 240,
+        "follows": 372,
+        "ig_reels_avg_watch_time": 7.8,
+        "video_duration": 21
+      }
+    },
+    {
+      "post_id": "17900011122233344",
+      "platform": "instagram",
+      "captured_at": "2026-08-01T21:14:03+00:00",
+      "post_url": "https://www.instagram.com/p/DLOW000slow/",
+      "media_type": "IMAGE",
+      "upload_timestamp": "2026-07-24T08:05:41+00:00",
+      "metrics": {
+        "views": 6120,
+        "reach": 5890,
+        "impressions": 6402,
+        "likes": 92,
+        "comments": 3,
+        "saved": 7,
+        "shares": 4,
+        "profile_visits": 18,
+        "website_clicks": 2,
+        "follows": 1
+      }
+    }
+  ],
+  "next_cursor": "eyJvZmZzZXQiOjN9",
+  "has_more": true
+}

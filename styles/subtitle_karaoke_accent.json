@@ -1,0 +1,7 @@
+{
+  "name": "subtitle-karaoke-accent",
+  "karaoke": {
+    "enabled": true,
+    "style": "accent"
+  }
+}

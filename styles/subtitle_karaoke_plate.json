@@ -1,0 +1,7 @@
+{
+  "name": "subtitle-karaoke-plate",
+  "karaoke": {
+    "enabled": true,
+    "style": "plate"
+  }
+}

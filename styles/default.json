@@ -1,0 +1,91 @@
+{
+  "name": "default",
+  "font_family": {
+    "name": "Onest",
+    "variable": "fonts/Onest.ttf",
+    "static": {},
+    "weights": {
+      "Regular": 400,
+      "SemiBold": 600,
+      "Bold": 700,
+      "Black": 900
+    },
+    "axes": {},
+    "license": "fonts/OFL-Onest.txt"
+  },
+  "sub_size_base": 200,
+  "sub_size_split": 148,
+  "sub_size_floor": 34,
+  "sub_chunk": {
+    "max_words": 3,
+    "max_chars": 24
+  },
+  "sub_style": {
+    "kind": "stroked",
+    "fill": [
+      255,
+      255,
+      255
+    ],
+    "stroke_w": 9,
+    "stroke_fill": "ink",
+    "pad": 26,
+    "shadow": true,
+    "shadow_dy": 4,
+    "shadow_alpha": 120,
+    "line_gap": 1.12,
+    "box_fill": [
+      0,
+      0,
+      0
+    ],
+    "box_alpha": 160,
+    "box_pad_x": 28,
+    "box_pad_y": 16,
+    "box_radius": 18,
+    "split_uses_clean": true
+  },
+  "accent": "lime",
+  "sub_cy_overrides": {
+    "split": 905,
+    "lower-third": 1090,
+    "fmt_A": 560,
+    "text-behind": 1200,
+    "demo": 1200,
+    "compare": 1400,
+    "default": 1200
+  },
+  "karaoke": {
+    "enabled": false,
+    "style": "accent",
+    "max_words": 4,
+    "max_chars": 26,
+    "fill": [
+      255,
+      255,
+      255
+    ],
+    "scale_pop": 1.08,
+    "plate_pad": 12,
+    "plate_radius": 14
+  },
+  "pace": {
+    "min_scene": 4.0,
+    "max_scene": 8.0,
+    "broll_share": 0.5,
+    "max_series": 2
+  },
+  "safe_zone": {
+    "profile": "ig-current",
+    "top": 170,
+    "bottom": 430,
+    "right": 150,
+    "left": 0,
+    "margin": 72
+  },
+  "punch": {
+    "scale": 1.1,
+    "ramp": 5,
+    "hold": 1.8
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "carousel_template": "photo:terracotta",
+  "gdrive_root": "G:\\Мой диск",
+  "publish_mode": "telegram_repost",
+  "publish_timezone": "+10:00",
+  "content_plan_timezone": "Asia/Vladivostok",
+  "script_bible_file": "CONTENT_BIBLE_КНИГА_СМЫСЛОВ.md",
+  "speech_recognition": "yes",
+  "tg_chat_id": "-1004477990623",
+  "daily_report_enabled": "да",
+  "daily_report_time": "20:00"
+}

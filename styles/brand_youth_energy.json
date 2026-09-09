@@ -1,0 +1,46 @@
+{
+  "name": "brand-youth-energy",
+  "_title": "Энергичный молодёжный",
+  "_description": "Ритм TikTok: округлый Rubik, короткие реплики по два слова, караоке с лаймовой плашкой под активным словом, частые склейки и заметный зум-удар. Смотрится как нативный контент ленты, а не как реклама.",
+  "_audience": "блогеры, edtech и курсы для молодой аудитории, гейминг, музыка, фитнес, локальный бизнес с молодой ЦА",
+  "_note": "Одна гарнитура с «Дерзким контрастным», но другой характер: там обводка и красный, здесь плашки и лайм. ВАЖНО: kind=boxed (обводка 0) выбран намеренно — при kind=stroked караоке-стиль plate рисует тёмное слово тёмной же обводкой поверх лаймовой плашки и слово превращается в кляксу. Rubik — статические файлы, SemiBold и Black отдаются в Bold. Поля с ведущим «_» — витрина для мастера установки, схемой style.py не читаются.",
+
+  "font_family": {
+    "name": "Rubik",
+    "variable": null,
+    "static": {
+      "Regular": "fonts/Rubik/Rubik-Regular.ttf",
+      "SemiBold": "fonts/Rubik/Rubik-Bold.ttf",
+      "Bold": "fonts/Rubik/Rubik-Bold.ttf",
+      "Black": "fonts/Rubik/Rubik-Bold.ttf"
+    },
+    "weights": {"Regular": 400, "SemiBold": 600, "Bold": 700, "Black": 700},
+    "axes": {},
+    "license": "fonts/Rubik/OFL.txt"
+  },
+
+  "sub_size_base": 104,
+  "sub_size_split": 78,
+  "sub_chunk": {"max_words": 2, "max_chars": 16},
+  "sub_style": {
+    "kind": "boxed",
+    "fill": [255, 255, 255],
+    "stroke_w": 0,
+    "shadow": false,
+    "line_gap": 1.08,
+    "box_fill": [0, 0, 0],
+    "box_alpha": 150,
+    "box_pad_x": 26,
+    "box_pad_y": 14,
+    "box_radius": 22,
+    "split_uses_clean": false
+  },
+
+  "accent": "lime",
+  "_accent_family": "E4-57: запасные акценты ТОГО ЖЕ лайма (тон бренда сохранён, меняется светлота) — травяной и тёмно-оливковый. Лайм очень светлый, поэтому обе запасные ТЕМНЕЕ: спорный фон у него — светлый кадр (небо, окно, белая стена).",
+  "accent_family": [[114, 143, 0], [62, 78, 0]],
+  "karaoke": {"enabled": true, "style": "plate", "max_words": 3, "max_chars": 18,
+              "scale_pop": 1.10, "plate_pad": 14, "plate_radius": 18},
+  "pace": {"min_scene": 2.5, "max_scene": 5.5, "broll_share": 0.65, "max_series": 2},
+  "punch": {"scale": 1.20, "ramp": 4, "hold": 1.0}
+}

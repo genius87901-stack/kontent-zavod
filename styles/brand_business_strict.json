@@ -1,0 +1,40 @@
+{
+  "name": "brand-business-strict",
+  "_title": "Деловой строгий",
+  "_description": "Спокойный экспертный вид: нейтральная гротеск-гарнитура Inter, субтитр на тёмной полупрозрачной плашке, холодный синий акцент, медленный монтаж без караоке. Ничего не мигает и не кричит — говорит спикер, оформление молчит.",
+  "_audience": "эксперты, консалтинг, юристы, финансы, B2B, врачи — там, где важно доверие, а не энергия",
+  "_note": "Пресет частичный: всё, чего здесь нет, берётся из дефолта движка (styles/default.json). Поля с ведущим «_» — витрина для мастера установки, схемой style.py не читаются.",
+
+  "font_family": {
+    "name": "Inter",
+    "variable": "fonts/Inter/Inter-Variable.ttf",
+    "static": {},
+    "weights": {"Regular": 400, "SemiBold": 600, "Bold": 700, "Black": 900},
+    "axes": {"Optical size": 32},
+    "license": "fonts/Inter/OFL.txt"
+  },
+
+  "sub_size_base": 88,
+  "sub_size_split": 70,
+  "sub_chunk": {"max_words": 4, "max_chars": 30},
+  "sub_style": {
+    "kind": "boxed",
+    "fill": [245, 245, 245],
+    "stroke_w": 0,
+    "shadow": false,
+    "line_gap": 1.16,
+    "box_fill": [16, 18, 22],
+    "box_alpha": 175,
+    "box_pad_x": 30,
+    "box_pad_y": 18,
+    "box_radius": 10,
+    "split_uses_clean": false
+  },
+
+  "accent": "sky",
+  "_accent_family": "E4-57: запасные акценты ТОГО ЖЕ голубого (тон бренда сохранён, меняется светлота) — насыщенный синий и почти белый голубой. Берутся, только если брендовый голубой не набирает 3:1 к фону кадра.",
+  "accent_family": [[0, 102, 251], [10, 62, 155]],
+  "karaoke": {"enabled": false},
+  "pace": {"min_scene": 5.0, "max_scene": 9.0, "broll_share": 0.35, "max_series": 3},
+  "punch": {"scale": 1.05, "ramp": 6, "hold": 2.2}
+}

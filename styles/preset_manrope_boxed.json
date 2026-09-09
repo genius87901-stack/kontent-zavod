@@ -1,0 +1,24 @@
+{
+  "name": "manrope-boxed",
+  "_note": "Пример СОСТАВНОГО пресета клиента: гарнитура Manrope (preset_manrope) + субтитр-плашка (subtitle_boxed). Пресет частичный — всё, что не перечислено, берётся из дефолта движка. Manrope не имеет веса 900: Black отдаётся в 800 (максимум оси файла).",
+  "font_family": {
+    "name": "Manrope",
+    "variable": "fonts/Manrope/Manrope-Variable.ttf",
+    "static": {},
+    "weights": {"Regular": 400, "SemiBold": 600, "Bold": 700, "Black": 800},
+    "axes": {},
+    "license": "fonts/Manrope/OFL.txt"
+  },
+  "sub_style": {
+    "kind": "boxed",
+    "stroke_w": 0,
+    "shadow": false,
+    "fill": [255, 255, 255],
+    "box_fill": [0, 0, 0],
+    "box_alpha": 160,
+    "box_pad_x": 28,
+    "box_pad_y": 16,
+    "box_radius": 18,
+    "split_uses_clean": false
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "name": "fmt_react",
+  "_ref": "references/react/01.ref.json (+_сравнение) — реакция: субтитр в ВЕРХНЮЮ треть, низ кадра под лицо",
+  "_center_target": "461 px = 24% (по задаче); ref01 center 0.1906",
+  "font_family": {
+    "name": "Onest",
+    "variable": "fonts/Onest.ttf",
+    "static": {},
+    "weights": {"Regular": 400, "SemiBold": 600, "Bold": 700, "Black": 900},
+    "axes": {},
+    "license": "fonts/OFL-Onest.txt"
+  },
+  "sub_size_base": 124,
+  "sub_size_split": 116,
+  "sub_size_floor": 30,
+  "_sub_chunk": "ref lines_max 3 — до 3 строк вверху кадра",
+  "sub_chunk": {"max_words": 3, "max_chars": 24},
+  "_sub_style": "ОБВОДКА (ref01 outline=true) — реакция кладёт текст на верх видео, чёткая обводка есть в оригинале; ничего сверх оригинала не добавляли",
+  "sub_style": {
+    "kind": "stroked",
+    "fill": [255, 255, 255],
+    "stroke_w": 9,
+    "stroke_fill": "ink",
+    "pad": 26,
+    "shadow": true,
+    "shadow_dy": 4,
+    "shadow_alpha": 120,
+    "line_gap": 1.12,
+    "box_fill": [0, 0, 0],
+    "box_alpha": 160,
+    "box_pad_x": 28,
+    "box_pad_y": 16,
+    "box_radius": 18,
+    "split_uses_clean": true,
+    "_cy_force": "реф react: субтитр в верхней трети (~24%), но на клипе с лицом вверху движок уводил его на 46%. cy_force держит его РОВНО в sub_cy (461).",
+    "case": "keep",
+    "align": "center",
+    "cy_force": true
+  },
+  "accent": "lime",
+  "_sub_cy": "все ключи = 461 (цель центра, верхняя треть); рендер по lower-third — ключ lower-third поднят наверх, низ остаётся под лицо",
+  "sub_cy_overrides": {
+    "split": 461,
+    "lower-third": 461,
+    "fmt_A": 461,
+    "text-behind": 461,
+    "demo": 461,
+    "compare": 461,
+    "default": 461
+  },
+  "karaoke": {
+    "enabled": false, "style": "accent", "max_words": 4, "max_chars": 26,
+    "fill": [255, 255, 255], "scale_pop": 1.08, "plate_pad": 12, "plate_radius": 14
+  },
+  "_pace": "ref cuts.scene_median 0.9 c (общая медиана трёх рефов, быстрый монтаж) — полоса вокруг медианы",
+  "pace": {"min_scene": 0.7, "max_scene": 1.4, "broll_share": 0.5, "max_series": 2},
+  "safe_zone": {"profile": "ig-current", "top": 170, "bottom": 430, "right": 150, "left": 0, "margin": 72},
+  "punch": {"scale": 1.1, "ramp": 5, "hold": 1.8}
+}

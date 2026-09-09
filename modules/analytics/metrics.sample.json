@@ -1,0 +1,97 @@
+{
+  "note": "Образец-mock метрик опубликованных постов для настройки и демонстрации модуля analytics. НЕ живые данные. Поля raw — «сырые» метрики в терминах площадки; провайдер (providers.py) переводит их в единый нормализованный вид. Живой источник Insights площадок — будущий этап (DESIGN §7).",
+  "posts": [
+    {
+      "post_id": "r3_auto_500k",
+      "platform": "instagram",
+      "format": "reels",
+      "rubric": "Точки роста",
+      "topic": "Как найти 500 000 ₽ в отчёте за 10 минут",
+      "published_at": "2026-07-20T10:00:00",
+      "raw": {
+        "reach": 42000,
+        "impressions": 51000,
+        "plays": 45000,
+        "avg_watch_time_sec": 4.2,
+        "video_length_sec": 32,
+        "likes": 1200,
+        "comments": 45,
+        "saves": 210,
+        "shares": 130,
+        "profile_visits": 320,
+        "website_taps": 90,
+        "follows": 60
+      }
+    },
+    {
+      "post_id": "c11_5_oshibok",
+      "platform": "instagram",
+      "format": "carousel",
+      "rubric": "Кейсы",
+      "topic": "5 ошибок, из-за которых теряют прибыль",
+      "published_at": "2026-07-22T10:00:00",
+      "raw": {
+        "reach": 28000,
+        "impressions": 33000,
+        "likes": 900,
+        "comments": 60,
+        "saves": 140,
+        "shares": 40,
+        "profile_visits": 210,
+        "website_taps": 260
+      }
+    },
+    {
+      "post_id": "r5_tishina",
+      "platform": "instagram",
+      "format": "reels",
+      "rubric": "Мышление",
+      "topic": "Почему тишина в отчёте дороже слов",
+      "published_at": "2026-07-25T10:00:00",
+      "raw": {
+        "reach": 63000,
+        "impressions": 71000,
+        "plays": 70000,
+        "avg_watch_time_sec": 12.5,
+        "video_length_sec": 28,
+        "likes": 2600,
+        "comments": 190,
+        "saves": 980,
+        "shares": 520,
+        "profile_visits": 900,
+        "website_taps": 620,
+        "follows": 210
+      }
+    },
+    {
+      "post_id": "tg_5minut",
+      "platform": "telegram",
+      "format": "post",
+      "rubric": "ИИ",
+      "topic": "5 минут в день на ИИ-разбор отчёта",
+      "published_at": "2026-07-24T12:00:00",
+      "raw": {
+        "views": 8500,
+        "reactions": 340,
+        "forwards": 95,
+        "replies": 12,
+        "link_clicks": 210
+      }
+    },
+    {
+      "post_id": "vk_ryvkami",
+      "platform": "vk",
+      "format": "post",
+      "rubric": "Продажи",
+      "topic": "Почему продажи идут рывками",
+      "published_at": "2026-07-23T18:00:00",
+      "raw": {
+        "views": 5200,
+        "likes": 180,
+        "comments": 22,
+        "reposts": 30,
+        "link_clicks": 40
+      }
+    }
+  ]
+}

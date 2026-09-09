@@ -1,0 +1,21 @@
+{
+  "note": "ОБРАЗЕЦ-ФИКСТУРА ответа Upload-Post GET /api/uploadposts/post-analytics/{request_id}. НЕ живые данные, поля-примеры для офлайн-теста normalize(). Реальную раскладку полей проверяем публичным probe (platform-metrics).",
+  "request_id": "req_demo_0001",
+  "user": "demo_profile",
+  "results": {
+    "instagram": {
+      "reach": 42000,
+      "impressions": 51000,
+      "video_views": 45000,
+      "average_watch_time": 4.2,
+      "video_duration": 32,
+      "likes": 1200,
+      "comments": 45,
+      "saved": 210,
+      "shares": 130,
+      "profile_visits": 320,
+      "website_clicks": 90,
+      "follows": 60
+    }
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "_note": "Каталог соцсетей для селектора установки «какие сети подключить». Владелец — слой установки (OWNER). Зрелость взята из docs/PUBLISH_READINESS.md (аудит по коду). Ключи (requires) — КАНОНИЧЕСКИЕ (lower_snake), совпадают с config_questions в плане после слияния манифестов (collect_manifests канонизирует UPPER→lower). Имена ключей взяты read-only из modules/publishing/module.manifest.json и modules/story_publisher/module.manifest.json — сами манифесты НЕ редактировались. Этот файл ничего не публикует и не хранит секретов.",
+  "schema": 1,
+  "maturity_labels": {
+    "proven": "проверено боем",
+    "risk": "есть, но не обкатано — на свой риск"
+  },
+  "connect_methods": {
+    "upload_post_connect_link": "БЕЗ КАБИНЕТА КЛИЕНТА (рекомендуется). Аккаунт Upload-Post — НАШ (агентский, один на всех клиентов); под ним заводится профиль клиента (POST /api/uploadposts/users). Мы генерируем персональную connect-ссылку (POST /api/uploadposts/users/generate-jwt → access_url app.upload-post.com/connect?token=…) и отдаём её клиенту. Клиент открывает ссылку и авторизует СВОИ соцсети через их родной OAuth — не заводит аккаунт Upload-Post, не видит дашборд/цены. Ключ Upload-Post остаётся у нас (в .env клиента как наш ключ). Так клиент не «уходит» к сервису-посреднику.",
+    "upload_post_cabinet": "ЗАПАСНОЙ путь: клиент сам входит на upload-post.com и подключает аккаунт площадки. Не рекомендуется — клиент видит сервис-посредник (риск ухода). Используем только если агентский профиль недоступен.",
+    "vk_oauth": "Через вход в ВКонтакте: клиент проходит VK ID и выдаёт ключ доступа (vk1.a…). Пароль ВК и «Разрешить» — сам клиент; система только открывает нужную страницу и ловит готовый ключ.",
+    "tg_bot": "Через своего Telegram-бота: клиент создаёт бота у @BotFather и добавляет его в свой канал администратором. Аккаунт/бота создаёт сам клиент."
+  },
+  "networks": [
+    {
+      "id": "instagram",
+      "name": "Instagram (лента + Reels)",
+      "maturity": "proven",
+      "path": "upload_post",
+      "connect": "upload_post_cabinet",
+      "requires": ["upload_post_api_key", "upload_post_user"],
+      "note": "Карусели #5–#9 и ролик выходили боем. Сторис Instagram — отдельно (этап 3, модуль story-publisher)."
+    },
+    {
+      "id": "youtube",
+      "name": "YouTube (видео, Shorts)",
+      "maturity": "proven",
+      "path": "upload_post",
+      "connect": "upload_post_cabinet",
+      "requires": ["upload_post_api_key", "upload_post_user"],
+      "note": "Подключён боем 21.07. Карусель на YouTube выложить нельзя — только видео/Shorts."
+    },
+    {
+      "id": "threads",
+      "name": "Threads",
+      "maturity": "proven",
+      "path": "upload_post",
+      "connect": "upload_post_cabinet",
+      "requires": ["upload_post_api_key", "upload_post_user"],
+      "note": "Подключён боем 21.07. Лимит подписи 500 знаков."
+    },
+    {
+      "id": "telegram",
+      "name": "Telegram (канал-архив, лента)",
+      "maturity": "proven",
+      "path": "tg_bot",
+      "connect": "tg_bot",
+      "requires": ["tg_bot_token", "tg_chat_id"],
+      "note": "Проверен боем как канал-архив через своего бота (страховка на случай блокировок). Публикация постом в канал возможна и через Upload-Post (тогда добавьте ключ Upload-Post), но свайп-карусель там уходит альбомом."
+    },
+    {
+      "id": "vkontakte",
+      "name": "ВКонтакте (видео/клип, фото-карусель)",
+      "maturity": "proven",
+      "path": "vk_own",
+      "connect": "vk_oauth",
+      "requires": ["vk_app_id", "vk_user_token", "vk_group_id"],
+      "note": "Свой код без посредника (Upload-Post ВК не умеет). Видео/клип — бой r37 29.07; фото-карусель (свайп) — замеры 29.07. Для сторис ВК нужен отдельный ключ vk_stories_token (этап 3)."
+    },
+    {
+      "id": "linkedin",
+      "name": "LinkedIn",
+      "maturity": "risk",
+      "path": "upload_post",
+      "connect": "upload_post_cabinet",
+      "requires": ["upload_post_api_key", "upload_post_user"],
+      "note": "Код есть (передаётся в Upload-Post), живьём не гоняли. Перед боем сверьте поля площадки."
+    },
+    {
+      "id": "facebook",
+      "name": "Facebook",
+      "maturity": "risk",
+      "path": "upload_post",
+      "connect": "upload_post_cabinet",
+      "requires": ["upload_post_api_key", "upload_post_user"],
+      "note": "Код есть, живьём не гоняли."
+    },
+    {
+      "id": "x",
+      "name": "X (Twitter)",
+      "maturity": "risk",
+      "path": "upload_post",
+      "connect": "upload_post_cabinet",
+      "requires": ["upload_post_api_key", "upload_post_user"],
+      "note": "Код есть, живьём не гоняли."
+    },
+    {
+      "id": "tiktok",
+      "name": "TikTok",
+      "maturity": "proven",
+      "path": "upload_post",
+      "connect": "upload_post_cabinet",
+      "requires": ["upload_post_api_key", "upload_post_user"],
+      "note": "Видео И карусель — оба боем 22.08.2026 (видео: .../video/7676905097053424904; карусель 8 слайдов: .../photo/7676908940612865288, подпись автообрезана 1138→88 симв.). Требует privacy_level (обязателен по докам TikTok, хоть upload-post и зовёт его опциональным) — autopost.py шлёт PUBLIC_TO_EVERYONE по умолчанию. Потолок подписи у фото-постов 90 симв. против 2200 у видео."
+    },
+    {
+      "id": "reddit",
+      "name": "Reddit",
+      "maturity": "risk",
+      "path": "upload_post",
+      "connect": "upload_post_cabinet",
+      "requires": ["upload_post_api_key", "upload_post_user"],
+      "note": "Код есть, живьём не гоняли. Вероятно, понадобится указать сабреддит."
+    },
+    {
+      "id": "bluesky",
+      "name": "Bluesky",
+      "maturity": "risk",
+      "path": "upload_post",
+      "connect": "upload_post_cabinet",
+      "requires": ["upload_post_api_key", "upload_post_user"],
+      "note": "Код есть, живьём не гоняли."
+    },
+    {
+      "id": "discord",
+      "name": "Discord",
+      "maturity": "risk",
+      "path": "upload_post",
+      "connect": "upload_post_cabinet",
+      "requires": ["upload_post_api_key", "upload_post_user"],
+      "note": "Код есть, живьём не гоняли. Вероятно, понадобится канал/вебхук."
+    },
+    {
+      "id": "google_business",
+      "name": "Google Business",
+      "maturity": "risk",
+      "path": "upload_post",
+      "connect": "upload_post_cabinet",
+      "requires": ["upload_post_api_key", "upload_post_user"],
+      "note": "Код есть, живьём не гоняли."
+    },
+    {
+      "id": "pinterest",
+      "name": "Pinterest",
+      "maturity": "proven",
+      "path": "upload_post",
+      "connect": "upload_post_cabinet",
+      "requires": ["upload_post_api_key", "upload_post_user"],
+      "note": "Видео — боем 22.08.2026 (pinterest.com/pin/1122381538417834374). Обязательны board_id (PINTEREST_BOARD_ID) И link (PINTEREST_LINK) — без ссылки Pinterest отказывает 'This site doesn't allow you to save Pins' сразу, а ссылка на Instagram отдельно отказывает 'Unable to reach the URL' (их краулер не проходит на Instagram) — использовать внешний адрес (сайт/YouTube/лендинг), не Instagram. Описание режется до 500 симв. (не документировано у upload-post, узнано по факту отказа 400). КАРУСЕЛЬ: их приложение вообще НЕ показывает заголовок/описание у карусельных пинов (проверено дважды живьём 22.08 — поле сервис принимает и логирует, но на экране пина его нет, разрыв где-то между upload-post и Pinterest) — поэтому карусель уходит ТОЛЬКО обложкой (1-й слайд), полный текст остаётся в описании; 5-слайдовый формат под настоящую Pinterest-карусель не нужен, раз подпись там всё равно не видна."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "note": "ОБРАЗЕЦ-ФИКСТУРА ответа Upload-Post GET /api/uploadposts/platform-metrics для ОФЛАЙН-пробы (probe). В нашей среде живой публичный вызов вернул HTTP 401 (требует ключ) — точную форму ответа подтверждайте живым probe при наличии ключа. Ключевое поле для интеграции — impressions_field: ГЛАВНОЕ поле показов у площадки (оно разное), его читает upload_post.impressions_field_map().",
+  "platforms": {
+    "instagram": {"impressions_field": "impressions", "metrics": ["reach", "impressions", "video_views", "likes", "comments", "saved", "shares", "profile_visits", "website_clicks", "follows"]},
+    "tiktok": {"impressions_field": "video_views", "metrics": ["video_views", "likes", "comments", "shares", "profile_visits"]},
+    "linkedin": {"impressions_field": "impressions", "metrics": ["impressions", "likes", "comments", "shares", "clicks"]},
+    "facebook": {"impressions_field": "impressions", "metrics": ["impressions", "reach", "likes", "comments", "shares"]},
+    "x": {"impressions_field": "impressions", "metrics": ["impressions", "likes", "replies", "reposts", "bookmarks"]},
+    "youtube": {"impressions_field": "views", "metrics": ["views", "likes", "comments", "shares", "average_view_duration"]},
+    "threads": {"impressions_field": "views", "metrics": ["views", "likes", "replies", "reposts"]},
+    "pinterest": {"impressions_field": "impressions", "metrics": ["impressions", "saves", "pin_clicks", "outbound_clicks"]},
+    "reddit": {"impressions_field": "views", "metrics": ["views", "upvotes", "comments", "shares"]},
+    "bluesky": {"impressions_field": "views", "metrics": ["views", "likes", "replies", "reposts"]}
+  }
+}

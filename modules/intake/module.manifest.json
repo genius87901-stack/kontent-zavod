@@ -1,0 +1,36 @@
+{
+  "name": "intake",
+  "description": "Приём сырья: заводит присланные фото в банк (import_photos.py) и держит контракт папок Google Диска (drive_structure.json + генератор drive_layout.py), откуда завод забирает материалы клиента и куда возвращает готовое.",
+  "python_requires": ">=3.9",
+  "pip": [
+    "pillow==11.3.0",
+    "pi-heif==1.1.1"
+  ],
+  "system_binaries": [],
+  "config_questions": [
+    {
+      "key": "gdrive_root",
+      "ask": "Где у тебя лежит папка Google Диска?",
+      "type": "string",
+      "required": false,
+      "help": "Укажи папку, в которую Google Диск синхронизирует файлы на этот компьютер (например, «Google Диск» или «Мой диск» в проводнике). Внутри неё завод сам заведёт папку «КонтентЗавод» с понятными русскими подпапками: свежую съёмку ты кидаешь в «1 Сырьё», готовое забираешь из «2 На утверждение». Если не указать — завод не сможет сам подхватывать твои материалы.",
+      "secret": false
+    },
+    {
+      "key": "client_name",
+      "ask": "Как подписать этот диск — имя или название проекта?",
+      "type": "string",
+      "required": false,
+      "help": "Нужно только чтобы отличать диски, если заводов несколько. Записывается в служебную карточку на диске и больше ни на что не влияет. Можно пропустить.",
+      "secret": false
+    }
+  ],
+  "folders": [
+    "inbox/photo",
+    "inbox/video"
+  ],
+  "drive_contract": "modules/intake/drive_structure.json",
+  "drive_generator": "python -m intake.drive_layout --root \"<gdrive_root>\" --client \"<client_name>\"",
+  "wizard_text": "python -m intake.wizard_text",
+  "doctor": "python -m intake.doctor"
+}

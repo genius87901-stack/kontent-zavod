@@ -1,0 +1,45 @@
+{
+  "name": "brand-soft-feminine",
+  "_title": "Мягкий женственный",
+  "_description": "Тёплый бережный вид: антиква Noto Serif, субтитр тёмным по светлой скруглённой плашке, терракотовый акцент, длинные спокойные планы. Читается как разговор по душам, а не как продающий ролик.",
+  "_audience": "психологи, коучи, нутрициологи, wellness, детские и семейные темы, бьюти-эксперты",
+  "_note": "Единственный засечный пресет витрины: даёт фактуру, которой нет ни у одного гротеска. Noto Serif — статические файлы, SemiBold и Black отдаются в Bold (в дистрибутиве два начертания). Поля с ведущим «_» — витрина для мастера установки, схемой style.py не читаются.",
+
+  "font_family": {
+    "name": "Noto Serif",
+    "variable": null,
+    "static": {
+      "Regular": "fonts/NotoSerif/NotoSerif-Regular.ttf",
+      "SemiBold": "fonts/NotoSerif/NotoSerif-Bold.ttf",
+      "Bold": "fonts/NotoSerif/NotoSerif-Bold.ttf",
+      "Black": "fonts/NotoSerif/NotoSerif-Bold.ttf"
+    },
+    "weights": {"Regular": 400, "SemiBold": 600, "Bold": 700, "Black": 700},
+    "axes": {},
+    "license": "fonts/NotoSerif/OFL.txt"
+  },
+
+  "sub_size_base": 84,
+  "sub_size_split": 66,
+  "sub_chunk": {"max_words": 4, "max_chars": 28},
+  "sub_style": {
+    "kind": "boxed",
+    "fill": "ink",
+    "stroke_w": 0,
+    "shadow": false,
+    "line_gap": 1.22,
+    "box_fill": [252, 248, 244],
+    "box_alpha": 232,
+    "box_pad_x": 34,
+    "box_pad_y": 22,
+    "box_radius": 34,
+    "split_uses_clean": false
+  },
+
+  "accent": "terracotta",
+  "_accent_family": "E4-57: запасные акценты ТОЙ ЖЕ терракоты (тон бренда сохранён, меняется светлота) — тёмная жжёная и совсем тёмная. Берутся, только если брендовая терракота не набирает 3:1 к фону кадра.",
+  "accent_family": [[128, 64, 39], [78, 39, 24]],
+  "karaoke": {"enabled": false},
+  "pace": {"min_scene": 5.5, "max_scene": 10.0, "broll_share": 0.45, "max_series": 3},
+  "punch": {"scale": 1.04, "ramp": 8, "hold": 2.4}
+}

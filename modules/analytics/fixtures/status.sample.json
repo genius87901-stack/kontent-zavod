@@ -1,0 +1,19 @@
+{
+  "_note": "ЗАПИСАННЫЙ ОБРАЗЕЦ ответа Upload-Post GET /api/uploadposts/status?request_id=req_demo_0001. НЕ живые данные. Форма по openapi.json (UploadStatusResponse: request_id/status/platforms/result/error), где result — свободный объект. Именно отсюда аналитика достаёт НАТИВНЫЙ id и ссылку вышедшего поста, чтобы найти его в пачке cached: эндпоинта «метрики по request_id» в API нет.",
+  "request_id": "req_demo_0001",
+  "status": "completed",
+  "platforms": ["instagram", "telegram"],
+  "result": {
+    "instagram": {
+      "success": true,
+      "post_id": "17912345678901234",
+      "post_url": "https://www.instagram.com/p/DABC123xyz/",
+      "media_type": "CAROUSEL_ALBUM"
+    },
+    "telegram": {
+      "success": true,
+      "message_id": "4471",
+      "post_url": "https://t.me/demo_channel/4471"
+    }
+  }
+}

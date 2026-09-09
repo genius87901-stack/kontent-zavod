@@ -1,0 +1,55 @@
+{
+  "platforms": [
+    "instagram",
+    "telegram",
+    "vk",
+    "youtube"
+  ],
+  "posts_per_week": 7,
+  "horizon_days": 7,
+  "formats": [
+    "carousel",
+    "reels",
+    "stories"
+  ],
+  "rubrics": [
+    "Город и люди",
+    "Проблема — решение",
+    "Бизнес без сказок",
+    "Нижний Амур",
+    "История и идентичность",
+    "Люди, которым нужна опора",
+    "Большой разговор",
+    "Закулисье действия"
+  ],
+  "tone": "живой, прямой, уважительный, без канцелярита; сильная позиция без унизительной лексики",
+  "post_time": "09:00",
+  "post_timezone": "Asia/Vladivostok",
+  "key_dates": [],
+  "forbidden": [
+    "лучший",
+    "единственный",
+    "все жители поддерживают",
+    "проект реализован",
+    "я добился",
+    "гарантирую",
+    "он украл",
+    "власть не работает",
+    "обещания гарантированного дохода"
+  ],
+  "trial_reels_mode": "off",
+  "trial_reels_per_week": 0,
+  "trial_reels_cadence": "weekly",
+  "veto_hours": 12,
+  "publish_approval_mode": "daily",
+  "period": {
+    "start": "2026-09-03",
+    "end": "2026-09-09"
+  },
+  "per_platform_volume": {
+    "instagram": 7,
+    "telegram": 7,
+    "vk": 7,
+    "youtube": 7
+  }
+}

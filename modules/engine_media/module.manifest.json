@@ -1,0 +1,43 @@
+{
+  "name": "engine-media",
+  "description": "Ядро рендера: карусели (тёмный/белый набор), разговорные Reels (транскрипт → блоки → split/cutout), B-roll со стоков, музыка, детектор лиц/текста. Покрывает корневые engine_*.py, talk_*.py, render_reels.py, checks.py, music*.py, stock.py, fonts/, broll_index.json.",
+  "python_requires": ">=3.9,<3.13",
+  "_talk_layer_note": "СЛОИ ВНУТРИ МОДУЛЯ. Ядро рендера (карусели + сборка видео) держится на numpy, pillow, opencv-python-headless, mediapipe, imageio-ffmpeg, requests, protobuf==4.25.9 — без любого из них doctor даёт код 1. Всё, что вокруг распознавания речи (torch, torchaudio, torchvision, whisperx, faster-whisper, ctranslate2, transformers, av), нужно ТОЛЬКО разговорным Reels: их отсутствие doctor считает урезанным режимом (код 2), а не поломкой. Список pip намеренно оставлен единым: модуль по политике install/stages.json атомарен (его pip ставится целиком на своём этапе), а engine-media включается на этапе 1 — вынести речевой слой в отдельный этап 2 может ТОЛЬКО ветка OWNER, заведя отдельный модуль в stages.json. До тех пор doctor не имеет права требовать эти пакеты как обязательные.",
+  "pip": [
+    "numpy==2.0.2",
+    "pillow==11.3.0",
+    "opencv-python-headless==4.11.0.86",
+    "mediapipe==0.10.14",
+    "imageio-ffmpeg==0.6.0",
+    "requests==2.32.5",
+    "torch==2.8.0",
+    "torchaudio==2.8.0",
+    "torchvision==0.23.0",
+    "open-clip-torch==2.32.0",
+    "whisperx==3.7.5",
+    "faster-whisper==1.2.1",
+    "ctranslate2==4.8.1",
+    "transformers==4.57.6",
+    "onnxruntime==1.19.2",
+    "av==15.1.0",
+    "protobuf==4.25.9"
+  ],
+  "system_binaries": [
+    {
+      "name": "ffmpeg",
+      "check": "ffmpeg -version",
+      "windows_install": "winget install Gyan.FFmpeg",
+      "macos_install": "brew install ffmpeg"
+    }
+  ],
+  "config_questions": [],
+  "folders": [
+    "out_talk",
+    "stock",
+    "music_cache",
+    ".cache_models",
+    ".cache_stock",
+    ".cache_src"
+  ],
+  "doctor": "python -m engine_media.doctor"
+}

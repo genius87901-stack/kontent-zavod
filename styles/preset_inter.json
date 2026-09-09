@@ -1,0 +1,11 @@
+{
+  "name": "inter",
+  "font_family": {
+    "name": "Inter",
+    "variable": "fonts/Inter/Inter-Variable.ttf",
+    "static": {},
+    "weights": {"Regular": 400, "SemiBold": 600, "Bold": 700, "Black": 900},
+    "axes": {"Optical size": 32},
+    "license": "fonts/Inter/OFL.txt"
+  }
+}

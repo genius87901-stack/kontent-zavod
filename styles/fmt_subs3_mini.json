@@ -1,0 +1,101 @@
+{
+ "name": "fmt_subs3_mini",
+ "_ref": "references/subs-3/01.ref.json — «говорящая голова», короткие реплики (до 2 строк), узкий блок",
+ "_center_target": "1257 px = 65.5% (subtitle.center 0.6547 × 1920)",
+ "font_family": {
+  "name": "Onest",
+  "variable": "fonts/Onest.ttf",
+  "static": {},
+  "weights": {
+   "Regular": 400,
+   "SemiBold": 600,
+   "Bold": 700,
+   "Black": 900
+  },
+  "axes": {},
+  "license": "fonts/OFL-Onest.txt"
+ },
+ "sub_size_base": 60,
+ "sub_size_split": 56,
+ "sub_size_floor": 30,
+ "_sub_chunk": "цель width_max 0.65; max_chars уменьшен 16→9 и кегль 132→114, чтобы блок стал уже (16/132 давали ~0.88, 11/132 → 0.79)",
+ "sub_chunk": {
+  "max_words": 2,
+  "max_chars": 9
+ },
+ "_sub_style": "★ ОРИГИНАЛ БЕЗ ОБВОДКИ (ref outline=false, только тень). Клипы Валерии светлые — чистый белый сливается с фоном (verify_talk валит по контрасту). Добавлена МИНИМАЛЬНАЯ мягкая обводка stroke_w=5 ради читаемости; вид сохраняет «почти без обводки», как в оригинале",
+ "sub_style": {
+  "kind": "stroked",
+  "fill": [
+   255,
+   255,
+   255
+  ],
+  "stroke_w": 0,
+  "stroke_fill": "ink",
+  "pad": 20,
+  "shadow": true,
+  "shadow_dy": 9,
+  "shadow_alpha": 220,
+  "line_gap": 1.1,
+  "box_fill": [
+   0,
+   0,
+   0
+  ],
+  "box_alpha": 160,
+  "box_pad_x": 28,
+  "box_pad_y": 16,
+  "box_radius": 18,
+  "split_uses_clean": false,
+  "_opts": "реф subs-3: субтитр по центру, обычный регистр — новые оси на дефолтах",
+  "case": "keep",
+  "align": "center",
+  "cy_force": false
+ },
+ "accent": "lime",
+ "_sub_cy": "все ключи = 1257 (цель центра); рендер идёт по ключу lower-third",
+ "sub_cy_overrides": {
+  "split": 1257,
+  "lower-third": 1257,
+  "fmt_A": 1257,
+  "text-behind": 1257,
+  "demo": 1257,
+  "compare": 1257,
+  "default": 1257
+ },
+ "karaoke": {
+  "enabled": false,
+  "style": "accent",
+  "max_words": 4,
+  "max_chars": 26,
+  "fill": [
+   255,
+   255,
+   255
+  ],
+  "scale_pop": 1.08,
+  "plate_pad": 12,
+  "plate_radius": 14
+ },
+ "_pace": "ref cuts.scene_median 1.514 c (диапазон сцен 0.1–10.5) — полоса вокруг медианы",
+ "pace": {
+  "min_scene": 1.2,
+  "max_scene": 2.2,
+  "broll_share": 0.5,
+  "max_series": 2
+ },
+ "safe_zone": {
+  "profile": "ig-current",
+  "top": 170,
+  "bottom": 430,
+  "right": 150,
+  "left": 0,
+  "margin": 72
+ },
+ "punch": {
+  "scale": 1.1,
+  "ramp": 5,
+  "hold": 1.8
+ }
+}

@@ -1,0 +1,52 @@
+{
+  "platforms": [
+    "instagram",
+    "telegram"
+  ],
+  "posts_per_week": 4,
+  "horizon_days": 30,
+  "formats": [
+    "carousel",
+    "reels"
+  ],
+  "rubrics": [
+    "Город и люди",
+    "Проблема — решение",
+    "Бизнес без сказок",
+    "Нижний Амур"
+  ],
+  "tone": "на «ты», мужской род, конкретика, без инфоцыганщины",
+  "post_time": "09:00",
+  "post_timezone": "Europe/Moscow",
+  "key_dates": [
+    {
+      "date": "2026-08-15",
+      "note": "старт набора на разбор"
+    }
+  ],
+  "forbidden": [
+    "обещания гарантированного дохода"
+  ],
+  "trial_reels_mode": "off",
+  "trial_reels_per_week": 0,
+  "trial_reels_cadence": "weekly",
+  "veto_hours": 12,
+  "publish_approval_mode": "daily",
+  "period": {
+    "start": "2026-08-01",
+    "end": "2026-08-31"
+  },
+  "per_platform_volume": {
+    "instagram": 5,
+    "telegram": 7
+  },
+  "per_platform_formats": {
+    "instagram": [
+      "reels",
+      "carousel"
+    ],
+    "telegram": [
+      "carousel"
+    ]
+  }
+}

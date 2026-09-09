@@ -1,0 +1,43 @@
+{
+  "_note": "ОБРАЗЕЦ манифеста модуля. Каждый CONSUMER кладёт свой в modules/<name>/module.manifest.json. Схема — CONTRACT.md §1. Поле files_in_box — предложенное OWNER расширение (белый список файлов модуля для сборщика коробки); если его нет, build_box берёт весь каталог модуля минус чёрный список.",
+  "name": "publishing",
+  "description": "Автопостинг и предохранитель публикации",
+  "python_requires": ">=3.11",
+  "pip": ["requests==2.32.3", "vk-api==11.9.9"],
+  "system_binaries": [],
+  "config_questions": [
+    {
+      "key": "vk_group_id",
+      "ask": "ID вашего сообщества ВКонтакте (цифры из адреса группы)",
+      "type": "string",
+      "required": false,
+      "help": "Откройте свою группу ВК, в адресе после vk.com/club — это и есть цифры. Без него пост опубликуется, но без кликабельной ссылки.",
+      "secret": false
+    },
+    {
+      "key": "vk_token",
+      "ask": "Ключ доступа ВКонтакте",
+      "type": "string",
+      "required": false,
+      "help": "Где взять — подскажу пошагово при установке. Без него публикация в ВК недоступна, остальное работает.",
+      "secret": true
+    },
+    {
+      "key": "upload_post_api_key",
+      "ask": "Ключ сервиса публикаций (upload-post)",
+      "type": "string",
+      "required": false,
+      "help": "Из личного кабинета на upload-post.com. Без него не будет автопостинга в Instagram/Threads.",
+      "secret": true
+    }
+  ],
+  "folders": ["output/published"],
+  "doctor": "python -m publishing.doctor",
+  "files_in_box": [
+    "__init__.py",
+    "doctor.py",
+    "autopost.py",
+    "vkpost.py",
+    "vk_auth.py"
+  ]
+}

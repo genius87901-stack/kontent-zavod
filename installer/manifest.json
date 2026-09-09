@@ -1,0 +1,217 @@
+{
+  "product": "Контент-завод — офлайн-коробка (SFX для Windows)",
+  "schema": 1,
+  "target": {
+    "os": "Windows 10/11 x64",
+    "gpu": "не требуется (CPU-only: torch cpu, whisper compute_type=int8)",
+    "python_embed": "3.11.9",
+    "python_abi_tag": "cp311",
+    "platform_tag": "win_amd64",
+    "wheelhouse": "installer/vendor/wheels"
+  },
+  "sfx": {
+    "format": "Inno Setup 6 (один подписываемый .exe, LZMA2, Pascal-постскрипт)",
+    "why": "офлайн-разворачивание многогигабайтной нагрузки с embeddable-Python и пост-скриптом (venv/модели) один .exe тянет лучше 7-Zip SFX (нет логики) и надёжнее NSIS для больших payload'ов",
+    "compiler_note": "iscc.exe (Inno) — сборка ТОЛЬКО на Windows-машине (см. BUILD-RECIPE.md)"
+  },
+  "stages_version": 1,
+  "modules": [
+    "analytics",
+    "content_plan",
+    "engine-media",
+    "intake",
+    "niche-hooks",
+    "publishing",
+    "script_writer",
+    "story-publisher"
+  ],
+  "pip": {
+    "count": 20,
+    "specs": [
+      {
+        "spec": "aiogram==3.27.0",
+        "modules": [
+          "story-publisher"
+        ]
+      },
+      {
+        "spec": "av==15.1.0",
+        "modules": [
+          "engine-media"
+        ]
+      },
+      {
+        "spec": "ctranslate2==4.8.1",
+        "modules": [
+          "engine-media"
+        ]
+      },
+      {
+        "spec": "faster-whisper==1.2.1",
+        "modules": [
+          "engine-media"
+        ]
+      },
+      {
+        "spec": "imageio-ffmpeg==0.6.0",
+        "modules": [
+          "engine-media"
+        ]
+      },
+      {
+        "spec": "mediapipe==0.10.14",
+        "modules": [
+          "engine-media"
+        ]
+      },
+      {
+        "spec": "numpy==2.0.2",
+        "modules": [
+          "engine-media"
+        ]
+      },
+      {
+        "spec": "onnxruntime==1.19.2",
+        "modules": [
+          "engine-media"
+        ]
+      },
+      {
+        "spec": "open-clip-torch==2.32.0",
+        "modules": [
+          "engine-media"
+        ]
+      },
+      {
+        "spec": "opencv-python-headless==4.11.0.86",
+        "modules": [
+          "engine-media"
+        ]
+      },
+      {
+        "spec": "pi-heif==1.1.1",
+        "modules": [
+          "intake"
+        ]
+      },
+      {
+        "spec": "pillow==11.3.0",
+        "modules": [
+          "engine-media",
+          "intake"
+        ]
+      },
+      {
+        "spec": "protobuf==4.25.9",
+        "modules": [
+          "engine-media"
+        ]
+      },
+      {
+        "spec": "requests==2.32.5",
+        "modules": [
+          "engine-media",
+          "publishing",
+          "story-publisher"
+        ]
+      },
+      {
+        "spec": "torch==2.8.0",
+        "modules": [
+          "engine-media"
+        ]
+      },
+      {
+        "spec": "torchaudio==2.8.0",
+        "modules": [
+          "engine-media"
+        ]
+      },
+      {
+        "spec": "torchvision==0.23.0",
+        "modules": [
+          "engine-media"
+        ]
+      },
+      {
+        "spec": "transformers==4.57.6",
+        "modules": [
+          "engine-media"
+        ]
+      },
+      {
+        "spec": "vk-api==11.9.9",
+        "modules": [
+          "story-publisher"
+        ]
+      },
+      {
+        "spec": "whisperx==3.7.5",
+        "modules": [
+          "engine-media"
+        ]
+      }
+    ]
+  },
+  "unpinned_pip": [],
+  "system_binaries": [
+    {
+      "name": "ffmpeg",
+      "check": "ffmpeg -version",
+      "windows_install": "winget install Gyan.FFmpeg"
+    },
+    {
+      "name": "yt-dlp",
+      "check": "yt-dlp --version",
+      "windows_install": "winget install yt-dlp.yt-dlp",
+      "required": false
+    }
+  ],
+  "models": [
+    {
+      "role": "whisper ASR (faster-whisper)",
+      "repo": "Systran/faster-whisper-<size>",
+      "default_size": "medium (~1.5 ГБ; small ~0.5 ГБ уже в .cache_models dev-машины)",
+      "license": "MIT",
+      "into": ".cache_models"
+    },
+    {
+      "role": "форс-выравнивание wav2vec2 (ru)",
+      "repo": "jonatasgrosman/wav2vec2-large-xlsr-53-russian",
+      "size": "~1.2 ГБ",
+      "license": "Apache-2.0",
+      "into": ".cache_models"
+    },
+    {
+      "role": "VAD (детектор речи, pyannote via whisperx)",
+      "repo": "зеркало whisperx (токен HF не нужен)",
+      "size": "~15–20 МБ",
+      "license": "MIT",
+      "into": ".cache_models"
+    }
+  ],
+  "fonts": [
+    {
+      "file": "fonts/Onest.ttf",
+      "license": "SIL OFL 1.1",
+      "license_file": "fonts/OFL-Onest.txt"
+    },
+    {
+      "file": "fonts/Inter/Inter-Variable.ttf",
+      "license": "SIL OFL 1.1",
+      "license_file": "fonts/Inter/OFL.txt"
+    },
+    {
+      "file": "fonts/Manrope/Manrope-Variable.ttf",
+      "license": "SIL OFL 1.1",
+      "license_file": "fonts/Manrope/OFL.txt"
+    }
+  ],
+  "third_party_doc": "THIRD_PARTY.md",
+  "license_gate": "installer/license_audit.py (GPL/AGPL — стоп)",
+  "notes": [
+    "Веса моделей и банк музыки в базовый payload НЕ входят как код — докладываются install_models.py / install_music.py (см. stages.json).",
+    "Всё pip строго с '==' (проверяется --check).",
+    "Финальная сборка .exe и приёмка распаковки+рендера — на Windows (BUILD-RECIPE.md); на маке собрано/проверено всё, что проверяемо."
+  ]
+}

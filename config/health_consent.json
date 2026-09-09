@@ -1,0 +1,18 @@
+{
+  "state": "granted",
+  "asked": 2,
+  "asked_at": "2026-09-09T01:31:34Z",
+  "last_event": {
+    "schema": 1,
+    "event": "granted",
+    "ts": "2026-09-09T03:14:45Z",
+    "ts_local": "2026-09-08 21:14:45",
+    "consent_version": "1.0",
+    "consent_file": "СОГЛАСИЕ_ДИАГНОСТИКА.md",
+    "consent_sha256": "1fa4af75feef468a39f2d23bae5e9415bba5ef33eeb0f9bcbce9ad849d841f8c",
+    "copy": "c864cddaac69f489",
+    "how": "agent_chat",
+    "box": "1.3.60"
+  },
+  "granted_at": "2026-09-09T03:14:45Z"
+}

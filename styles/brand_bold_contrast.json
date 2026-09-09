@@ -1,0 +1,44 @@
+{
+  "name": "brand-bold-contrast",
+  "_title": "Дерзкий контрастный",
+  "_description": "Максимальная громкость: крупный жирный Rubik с толстой обводкой и тенью, красный акцент, караоке-подсветка активного слова, короткие рубленые реплики и быстрый монтаж. Видно на любом фоне и на звуке выключенном.",
+  "_audience": "продажи, инфобиз, спорт, мотивация, ниши с холодным трафиком и борьбой за первые 3 секунды",
+  "_note": "Rubik — статические файлы (Regular/Bold), SemiBold и Black отдаются в Bold; недостаток веса компенсирован обводкой 12. Поля с ведущим «_» — витрина для мастера установки, схемой style.py не читаются.",
+
+  "font_family": {
+    "name": "Rubik",
+    "variable": null,
+    "static": {
+      "Regular": "fonts/Rubik/Rubik-Regular.ttf",
+      "SemiBold": "fonts/Rubik/Rubik-Bold.ttf",
+      "Bold": "fonts/Rubik/Rubik-Bold.ttf",
+      "Black": "fonts/Rubik/Rubik-Bold.ttf"
+    },
+    "weights": {"Regular": 400, "SemiBold": 600, "Bold": 700, "Black": 700},
+    "axes": {},
+    "license": "fonts/Rubik/OFL.txt"
+  },
+
+  "sub_size_base": 112,
+  "sub_size_split": 82,
+  "sub_chunk": {"max_words": 2, "max_chars": 18},
+  "sub_style": {
+    "kind": "stroked",
+    "fill": [255, 255, 255],
+    "stroke_w": 12,
+    "stroke_fill": "ink",
+    "pad": 30,
+    "shadow": true,
+    "shadow_dy": 6,
+    "shadow_alpha": 150,
+    "line_gap": 1.06,
+    "split_uses_clean": false
+  },
+
+  "accent": "red",
+  "_accent_family": "E4-57: запасные акценты ТОГО ЖЕ красного (тон бренда сохранён, меняется только светлота) — тёмно-вишнёвый и розово-красный. Завод берёт их, только когда брендовый красный не набирает 3:1 к фону кадра; не помогает ни один — остаётся красный бренда.",
+  "accent_family": [[123, 9, 23], [244, 92, 111]],
+  "karaoke": {"enabled": true, "style": "accent", "max_words": 3, "max_chars": 20, "scale_pop": 1.14},
+  "pace": {"min_scene": 2.5, "max_scene": 5.0, "broll_share": 0.6, "max_series": 2},
+  "punch": {"scale": 1.18, "ramp": 4, "hold": 1.2}
+}

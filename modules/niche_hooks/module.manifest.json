@@ -1,0 +1,23 @@
+{
+  "_note": "Паспорт модуля niche-hooks (виральная разведка ниши). Сам инструмент — скилл skills/niche-hooks/SKILL.md; здесь только требования установщику и doctor. Ручной инструмент разведки: тратит кредиты vidIQ, в авто-пайплайн не встраивается. Ставится на 3-м этапе установки (install/stages.json).",
+  "name": "niche-hooks",
+  "description": "Виральная разведка ниши: аутлаеры конкурентов, разбор хуков, банк смыслов (ручной инструмент, тратит кредиты vidIQ)",
+  "python_requires": ">=3.11",
+  "pip": [],
+  "system_binaries": [
+    {
+      "name": "yt-dlp",
+      "check": "yt-dlp --version",
+      "windows_install": "winget install yt-dlp.yt-dlp",
+      "macos_install": "brew install yt-dlp",
+      "required": false
+    }
+  ],
+  "config_questions": [],
+  "folders": ["research/niche-hooks"],
+  "doctor": "python -m niche_hooks.doctor",
+  "files_in_box": [
+    "__init__.py",
+    "doctor.py"
+  ]
+}
