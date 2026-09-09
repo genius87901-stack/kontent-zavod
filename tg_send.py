@@ -107,7 +107,16 @@ def main():
 
     env = load_env()
     token = env.get("TG_BOT_TOKEN") or os.environ.get("TG_BOT_TOKEN")
-    chat = args.to or env.get("TG_CHAT_ID") or os.environ.get("TG_CHAT_ID")
+    # ЛОКАЛЬНАЯ ПРАВКА (09.09.2026): докстринг выше обещает, что адрес канала
+    # читается из config/factory.config.json — но там ключ называется
+    # `tg_chat_id` строчными, а искали только `TG_CHAT_ID` заглавными.
+    # config_reader.merged() регистр не меняет, поэтому адрес НЕ находился
+    # никогда, и скрипт врал «НЕ ЗАДАН АДРЕС КАНАЛА-АРХИВА» клиенту, который
+    # его честно вписал (ровно тот случай, что описан в докстринге).
+    chat = (args.to or env.get("TG_CHAT_ID") or env.get("tg_chat_id")
+            or os.environ.get("TG_CHAT_ID"))
+    if chat is not None:
+        chat = str(chat)
     if not token:
         sys.exit("НЕ ЗАДАН КЛЮЧ БОТА TELEGRAM (TG_BOT_TOKEN) — архив вести "
                  "нечем.\nОн спрашивается в мастере установки («Ключ бота для "

@@ -245,7 +245,10 @@ def test_doctor_and_carousel_agree_on_the_same_box():
             "import sys; sys.path.insert(0, 'modules');\n"
             "from publishing import doctor;\n"
             "problems, lines = doctor.check();\n"
-            "print('VK_OK=', any('ВКонтакте' in l for l in lines))\n", box)
+            # ВК теперь живёт в problems, а не в lines: ключ есть, но работать
+            # им запрещено, и «OK» про него быть не может. Инвариант проверки
+            # прежний — доктор и код видят ОДНУ раскладку, включая алиасы.
+            "print('VK_OK=', any('ВКонтакте' in l for l in problems + lines))\n", box)
         rc_run, out_run = _py(
             "import sys; sys.path.insert(0, 'modules');\n"
             "import vkcarousel;\n"
@@ -258,8 +261,19 @@ def test_doctor_and_carousel_agree_on_the_same_box():
 
 
 # ============================================================================
-# 2. ВХОД, ПОСИЛЬНЫЙ КЛИЕНТУ (vk_auth.py --kate)
+# 2. ВХОД ЧЕРЕЗ KATE MOBILE ЗАПРЕЩЁН (08.09.2026)
 # ============================================================================
+#
+# ЧТО СЛУЧИЛОСЬ. Помощник в копии клиента прошёл этот вход по нашей же
+# инструкции — и ВКонтакте ЗАБЛОКИРОВАЛ АККАУНТ клиентки целиком: API ответил
+# «user authorization failed: user is blocked», ВК прислал ссылку на
+# восстановление с проверкой личности. Снять блокировку может только сам
+# владелец аккаунта.
+#
+# ПОЧЕМУ ТЕСТЫ, А НЕ СТРОЧКА В ИНСТРУКЦИИ. Прежние инструкции остались у
+# клиентов на руках и в старых копиях завода. Запрет держится кодом: ссылка не
+# собирается, ключ не пишется, команда отказывает вслух. Инструкция может
+# разойтись с кодом — тест не даст.
 
 def _vk_auth():
     with _no_network():
@@ -268,125 +282,111 @@ def _vk_auth():
         return importlib.reload(mod)
 
 
-def test_kate_link_asks_for_the_rights_carousel_needs():
-    """Ссылка входа просит именно те права, без которых карусель невозможна."""
+def test_login_link_is_not_built_anymore():
+    """Ссылка входа НЕ собирается ни одной функцией — падаем громко."""
     with _no_network():
-        link = _vk_auth().kate_link()
-    assert link.startswith("https://oauth.vk.com/authorize?"), link
-    assert "client_id=2685278" in link, (
-        "потерян публичный номер Kate Mobile — именно у него одобрено право "
-        "«стена», а у новых приложений его не дают:\n%s" % link)
-    for right in ("wall", "photos", "video", "offline"):
-        assert right in link, "в ссылке нет права %s:\n%s" % (right, link)
-    assert "response_type=token" in link, (
-        "не тот тип ответа: без него ВК отдаст код, а не ключ")
-    assert "revoke=1" in link, (
-        "без revoke ВК молча переиспользует старое согласие со старыми правами "
-        "— и клиент получит ключ, которым нельзя публиковать")
-    assert "scope=wall,photos,video,offline,groups" in link, (
-        "запятые в scope закодированы (%2C) — ссылка перестала совпадать с "
-        "единственным адресом, про который известно, что он работает. Проверить "
-        "догадку «ВК всё равно раскодирует» нам нечем:\n%s" % link)
-    assert "redirect_uri=https://oauth.vk.com/blank.html" in link, link
+        va = _vk_auth()
+        try:
+            va.kate_link()
+        except RuntimeError as ex:
+            assert "SmmBox" in str(ex), (
+                "отказ не назвал разрешённый путь — человек пойдёт искать "
+                "обход:\n%s" % ex)
+        else:
+            raise AssertionError(
+                "kate_link() снова отдаёт рабочую ссылку входа — это тот самый "
+                "путь, на котором ВК заблокировал аккаунт клиентки")
 
 
-def test_kate_finish_writes_canonical_name_and_hides_the_key():
-    """Ключ из адреса ложится в .env под КАНОНИЧЕСКИМ именем и не печатается."""
-    token = "vk1.a." + "Д" * 180
-    url = ("https://oauth.vk.com/blank.html#access_token=%s&expires_in=0"
-           "&user_id=777" % token)
+def test_key_from_that_login_is_not_written():
+    """Адрес со страницы больше не превращается в ключ в .env."""
+    url = ("https://oauth.vk.com/blank.html#access_token=vk1.a.x"
+           "&expires_in=0&user_id=777")
     with _no_network():
         va = _vk_auth()
         with tempfile.TemporaryDirectory() as tmp:
             env_path = Path(tmp) / ".env"
             env_path.write_text("TG_BOT_TOKEN=прежний\n", encoding="utf-8")
-            buf = io.StringIO()
-            with contextlib.redirect_stdout(buf):
-                va.kate_finish(url, path=str(env_path))
-            out = buf.getvalue()
-            written = env_path.read_text(encoding="utf-8")
-    assert "VK_USER_TOKEN_KATE=%s" % token in written, (
-        "ключ записан не под каноническим именем:\n%s" % written)
-    assert "TG_BOT_TOKEN=прежний" in written, (
-        "запись ключа затёрла соседние настройки клиента:\n%s" % written)
-    assert token not in out, (
-        "ключ напечатан целиком — он даёт полный доступ к стене и в переписку "
-        "попадать не должен:\n%s" % out)
-    assert "бессрочный" in out, (
-        "expires_in=0 означает вечный ключ; клиент должен это увидеть:\n%s" % out)
-
-
-def test_kate_finish_warns_when_key_expires():
-    """Не сработало offline — обязаны предупредить, а не молчать."""
-    url = "https://oauth.vk.com/blank.html#access_token=vk1.a.к&expires_in=3600"
-    with _no_network():
-        va = _vk_auth()
-        with tempfile.TemporaryDirectory() as tmp:
-            buf = io.StringIO()
-            with contextlib.redirect_stdout(buf):
-                va.kate_finish(url, path=str(Path(tmp) / ".env"))
-            out = buf.getvalue()
-    assert "ошибкой 5" in out and "ещё раз" in out, (
-        "часовой ключ выдан за рабочий: клиент узнает об этом через час, "
-        "посреди выпуска:\n%s" % out)
-
-
-def test_kate_finish_explains_a_wrong_address():
-    """Клиент прислал не тот адрес — объясняем, какой нужен, без стектрейса."""
-    with _no_network():
-        va = _vk_auth()
-        for bad in ("https://vk.com/feed", "", "просто текст"):
             try:
-                va.kate_parse(bad)
-            except ValueError as ex:
-                text = str(ex)
-                assert "Traceback" not in text
-                assert "access_token" in text or "пуст" in text, text
+                va.kate_finish(url, path=str(env_path))
+            except RuntimeError as ex:
+                assert "SmmBox" in str(ex), str(ex)
             else:
-                raise AssertionError("адрес без ключа принят как годный: %r" % bad)
+                raise AssertionError("ключ запрещённого входа записан в .env")
+            written = env_path.read_text(encoding="utf-8")
+    assert "VK_USER_TOKEN_KATE" not in written, written
+    assert "TG_BOT_TOKEN=прежний" in written, (
+        "отказ затёр соседние настройки клиента:\n%s" % written)
 
 
-def test_kate_finish_relays_vk_refusal():
-    """ВК прямым текстом отказал — показываем его слова, а не «ключа нет»."""
-    with _no_network():
-        va = _vk_auth()
-        try:
-            va.kate_parse("https://oauth.vk.com/blank.html?error=access_denied"
-                          "&error_description=User+denied")
-        except ValueError as ex:
-            assert "access_denied" in str(ex), str(ex)
-            assert "Отмена" in str(ex), str(ex)
-        else:
-            raise AssertionError("отказ ВК принят за успешный вход")
+def test_command_refuses_out_loud_and_with_code_2():
+    """`--kate` отказывает словами и кодом 2, а не молчит и не падает стеком.
 
-
-def test_kate_needs_no_developer_registration():
-    """`--kate` работает БЕЗ VK_APP_ID — иначе клиент опять в тупике.
-
-    Прежний путь требовал завести standalone-приложение на dev.vk.com. Именно
-    на этом вопросе нетехнический человек и останавливался.
+    Молчаливое «нет такой команды» человек читает как поломку завода и идёт
+    искать обход — ровно то, чего запрет и не должен допустить.
     """
     with tempfile.TemporaryDirectory() as tmp:
         box = _box(tmp, {}, {})
         rc, out = _py("import sys; sys.argv = ['vk_auth.py', '--kate'];\n"
                       "import vk_auth; vk_auth.main()\n", box)
-    assert rc == 0, ("--kate потребовал чего-то, чего у клиента нет:\n%s" % out)
-    assert "VK_APP_ID" not in out, out
-    assert "oauth.vk.com/authorize" in out, out
-    assert "Разрешить" in out and "VPN" in out, (
-        "клиенту не объяснили, что делать на экране ВК:\n%s" % out)
+    assert rc == 2, ("ожидался код 2 (не поломка, но и не успех):\n%s" % out)
+    assert "Traceback" not in out, out
+    assert "ЗАПРЕТ" in out and "smmbox_connect.py" in out, (
+        "отказ не объяснил ни запрета, ни что делать вместо:\n%s" % out)
+    assert "oauth.vk.com/authorize" not in out, (
+        "в отказе напечатана та самая ссылка — её просто скопируют:\n%s" % out)
 
 
-def test_kate_modes_never_touch_the_network():
-    """Обе команды входа не делают НИ ОДНОГО запроса. Это проверяемо, а не обещано."""
-    with _no_network():          # любой запрос здесь = падение теста
-        va = _vk_auth()
-        va.kate_link()
-        with tempfile.TemporaryDirectory() as tmp:
-            with contextlib.redirect_stdout(io.StringIO()):
-                va.kate_finish(
-                    "https://oauth.vk.com/blank.html#access_token=vk1.a.x"
-                    "&expires_in=0", path=str(Path(tmp) / ".env"))
+def test_refusal_prints_on_a_russian_windows_console():
+    """Отказ обязан НАПЕЧАТАТЬСЯ на консоли клиента, а не упасть на кодировке.
+
+    Поймано живьём при написании запрета: эмодзи в тексте роняло вывод на
+    Windows с cp1251 — вместо отказа человек видел стектрейс. Это тот же
+    «отказ, выглядящий как успех», только вывернутый наизнанку.
+    """
+    with _no_network():
+        ban = _vk_auth().KATE_BAN
+    for console in ("cp1251", "cp866"):
+        try:
+            ban.encode(console)
+        except UnicodeEncodeError as ex:
+            raise AssertionError(
+                "текст отказа не печатается на консоли %s (%s) — клиент "
+                "увидит стектрейс вместо объяснения" % (console, ex))
+
+
+def test_the_app_number_is_gone_from_the_code():
+    """Номера приложения Kate Mobile нет в коде — ссылку не из чего собрать.
+
+    Пока номер лежит в файле, ссылку можно собрать заново «на минуточку».
+    Запрет проверяем по отсутствию материала, а не по доброй воле.
+    """
+    hits = []
+    for path in sorted(REPO.glob("*.py")) + sorted(
+            (REPO / "modules").rglob("*.py")):
+        if path.name == Path(__file__).name:
+            continue
+        text = path.read_text(encoding="utf-8", errors="replace")
+        if "2685278" in text or "oauth.vk.com/authorize" in text:
+            hits.append(str(path.relative_to(REPO)))
+    assert not hits, (
+        "номер приложения или адрес входа вернулись в код: %s" % ", ".join(hits))
+
+
+def test_client_instructions_do_not_send_anyone_to_that_login():
+    """В инструкции клиента нет ни команды входа, ни имени приложения.
+
+    Клиентский CLAUDE.md — рабочий инструмент помощника: чего в нём нет, того
+    для клиента не существует, и наоборот.
+    """
+    doc = REPO / "install" / "box_root" / "CLAUDE.md"
+    text = doc.read_text(encoding="utf-8")
+    for forbidden in ("--kate", "Kate Mobile", "2685278"):
+        for line in text.splitlines():
+            if forbidden in line and "ЗАПРЕЩ" not in line.upper():
+                raise AssertionError(
+                    "инструкция клиента снова ведёт на запрещённый вход: %s"
+                    % line.strip())
 
 
 # ============================================================================
@@ -400,39 +400,57 @@ def _doctor_on(config: dict, env: dict):
                    "from publishing import doctor; sys.exit(doctor.main())\n", box)
 
 
-def test_doctor_ok_when_vk_connected():
-    """Подключён каноническим ключом и задано сообщество — про ВК жалоб нет."""
-    rc, out = _doctor_on({"VK_GROUP_ID": "12345"},
-                         {"VK_USER_TOKEN_KATE": "vk1.a.рабочий"})
-    assert "OK  ВКонтакте" in out, out
-    assert "Traceback" not in out, out
-    assert rc in (0, 2), out          # другие площадки в этой коробке пусты
+def test_doctor_no_longer_calls_the_old_vk_key_readiness():
+    """Старый ключ в настройках — это НЕ «ВКонтакте готов».
 
-
-def test_doctor_warns_that_backup_key_dies_in_an_hour():
-    """Только запасной ключ VK ID — обязаны назвать И час, И отсутствие каруселей.
-
-    Это дословно та беда, из-за которой клиент писал «вчера работало»: ключ
-    молча умирал через час, а карусели на нём не выходили вообще.
+    Раньше доктор при виде ключа писал «OK ВКонтакте (карусели, видео и клипы):
+    готово». Работать этим ключом запрещено, значит строка стала враньём — а
+    именно доктора клиент читает, решая, всё ли у него хорошо.
     """
     rc, out = _doctor_on({"VK_GROUP_ID": "12345"},
-                         {"VK_USER_TOKEN": "vk2.a.запасной"})
-    assert rc == 2, out
-    assert "ЧАС" in out.upper(), (
-        "доктор не сказал, что ключ умрёт через час:\n%s" % out)
-    assert "Карусели" in out or "карусел" in out, (
-        "доктор не сказал, что карусели на этом ключе не выходят:\n%s" % out)
-    assert "vk_auth.py --kate" in out, (
-        "названа беда, но не назван выход:\n%s" % out)
+                         {"VK_USER_TOKEN_KATE": "vk1.a.старый"})
+    assert "OK  ВКонтакте" not in out, (
+        "доктор снова выдаёт запрещённый ключ за готовность:\n%s" % out)
+    assert "не используется" in out.lower() or "НЕ ИСПОЛЬЗУЕТСЯ" in out, out
+    assert "smmbox_connect.py" in out, (
+        "закрыли путь и не назвали работающий:\n%s" % out)
+    assert "Traceback" not in out, out
+
+
+def test_doctor_sells_no_direct_vk_path_at_all():
+    """Ни один прямой ключ ВК не выдаётся за путь публикации.
+
+    Раньше здесь проверялось, что доктор честно предупреждает: запасной ключ
+    vk2.a. живёт час и карусели им не выходят. Предупреждение стало
+    бессмысленным — публиковать в ВК своим ключом нельзя вообще, ни вечным, ни
+    часовым. Осталась одна проверка, и она важнее прежней: клиента не отправят
+    чинить ВК прямым входом.
+    """
+    for env in ({"VK_USER_TOKEN": "vk2.a.запасной"},
+                {"VK_USER_TOKEN_KATE": "vk1.a.вечный"},
+                {}):
+        rc, out = _doctor_on({"VK_GROUP_ID": "12345"}, env)
+        assert "vk_auth.py" not in out and "--kate" not in out, (
+            "доктор ведёт на запрещённый вход при настройках %s:\n%s"
+            % (env, out))
+        assert "smmbox_connect.py" in out, (
+            "доктор не назвал работающий путь при настройках %s:\n%s"
+            % (env, out))
+        assert "Traceback" not in out, out
+        assert rc in (0, 2), out
 
 
 def test_doctor_offers_one_command_when_vk_missing():
-    """ВК не подключён — доктор даёт КОМАНДУ, а не предлагает разбираться."""
+    """ВК не подключён — доктор даёт КОМАНДУ, а не предлагает разбираться.
+
+    Команда теперь одна и та же во всех ветках: SmmBox. Прежняя проверка ждала
+    здесь «3 минуты» про прямой вход — обещание снято вместе с самим входом.
+    """
     rc, out = _doctor_on({}, {})
     assert rc == 2, out
-    assert "vk_auth.py --kate" in out, out
-    assert "3 минуты" in out, (
-        "клиенту не сказали, сколько это займёт — он отложит:\n%s" % out)
+    assert "smmbox_connect.py" in out, out
+    assert "vk_auth.py --kate" not in out, (
+        "доктор снова ведёт клиента на запрещённый вход:\n%s" % out)
     assert "токен" not in out.lower().split("вконтакте")[-1][:400], (
         "в ВК-подсказке всплыло слово «токен» — клиент его не знает:\n%s" % out)
 
@@ -458,39 +476,52 @@ def _questions(manifest: Path):
     return {q["key"].strip().lower(): q for q in data.get("config_questions", [])}
 
 
-def test_manifest_asks_the_key_the_code_actually_reads():
-    """Ключ, который читают карусель, клипы и сторис, обязан быть в анкете.
+def test_wizard_cannot_ask_for_the_forbidden_vk_key():
+    """Мастер установки НЕ спрашивает прямой ключ ВК — ни в одном модуле.
 
-    Раньше `VK_USER_TOKEN_KATE` не был заявлен НИ В ОДНОМ манифесте — клиент не
-    мог ввести его нигде, а без него карусель не работает совсем.
+    Пока вопрос стоит в анкете, запрет обходится в один ход: клиент читает
+    старую инструкцию (или лист самопроверки, разосланный 08.09.2026), говорит
+    «подключи ВК», мастер спрашивает ключ — и человек идёт его добывать
+    запрещённым входом. Вопроса нет — обходить нечего.
     """
     here = Path(__file__).resolve().parent
     pub = _questions(here / "module.manifest.json")
     stories = _questions(here.parent / "story_publisher" / "module.manifest.json")
-    assert "vk_user_token_kate" in pub, (
-        "publishing не спрашивает ключ, которым публикует: %s" % sorted(pub))
-    assert "vk_user_token_kate" in stories, (
-        "story-publisher спрашивает ключ ВК под другим именем — клиент ответит "
-        "дважды или не закроет ветку: %s" % sorted(stories))
-    assert pub["vk_user_token_kate"].get("secret") is True, (
-        "ключ доступа к стене помечен несекретным — он уедет в открытый "
-        "config/factory.config.json")
+    for name, qs in (("publishing", pub), ("story_publisher", stories)):
+        forbidden = [k for k in qs if k.startswith("vk_") and "token" in k]
+        assert not forbidden, (
+            "%s снова спрашивает ключ ВК (%s) — это прямой вход, после которого "
+            "ВК блокирует аккаунт клиента" % (name, forbidden))
 
 
-def test_wizard_asks_vk_key_once_for_both_modules():
-    """Оба модуля спрашивают ОДИН ключ — мастер задаст вопрос один раз.
+def test_wizard_drops_the_key_even_if_a_manifest_brings_it_back():
+    """Замок стоит в самом мастере, а не только в манифестах.
 
-    Совпадение ключей и есть механизм: install/questions.py::collect
-    дедуплицирует вопросы по канону ключа.
+    Манифест может вернуться из чужой ветки, из старой копии, из правки по
+    невнимательности. Тогда вопрос всё равно не будет задан.
     """
-    here = Path(__file__).resolve().parent
-    pub = _questions(here / "module.manifest.json")
-    stories = _questions(here.parent / "story_publisher" / "module.manifest.json")
-    vk_pub = [k for k in pub if k.startswith("vk_") and "token" in k]
-    vk_st = [k for k in stories if k.startswith("vk_") and "token" in k]
-    assert vk_pub == vk_st == ["vk_user_token_kate"], (
-        "модули просят разные ключи ВК (%s против %s) — клиента спросят дважды "
-        "об одном и том же, и он решит, что ключей нужно два" % (vk_pub, vk_st))
+    src = (REPO / "install" / "questions.py").read_text(encoding="utf-8")
+    assert "BLOCKED_KEYS" in src, "замок из мастера исчез"
+    assert "vk_user_token_kate" in src, (
+        "ключ ВК выпал из списка запрещённых — мастер снова его спросит")
+
+
+def test_old_key_is_left_in_place_but_never_used():
+    """Ключ из `.env` не выдёргиваем — но и не публикуем им.
+
+    Две половины одного решения. Удалять чужие настройки без просьбы мы не
+    будем: это сломало бы копию клиента ради правила. Но и работать этим
+    ключом нельзя — запрещён не способ его добыть, а любое действие им.
+    """
+    src = (REPO / "vkcarousel.py").read_text(encoding="utf-8")
+    head = src[:src.index("def ")] if "def " in src else src
+    assert "ЗАПРЕЩ" in src.upper(), "из карусели пропал запрет"
+    rc, out = _doctor_on({"VK_GROUP_ID": "12345"},
+                         {"VK_USER_TOKEN_KATE": "vk1.a.старый"})
+    assert "Удалять ключ не нужно" in out or "удалять" in out.lower(), (
+        "доктор не сказал, что старый ключ можно оставить — клиент решит, что "
+        "надо чистить .env руками:\n%s" % out)
+    assert rc in (0, 2), out
 
 
 def test_manifest_no_longer_asks_the_unanswerable():
@@ -525,9 +556,11 @@ def test_error_5_names_the_cause_and_the_fix():
         import importlib
         vkc = importlib.reload(importlib.import_module("vkcarousel"))
         text = vkc.vk_error_text(5, "User authorization failed: no access_token passed.")
-    assert "python vk_auth.py --kate" in text, (
+    assert "smmbox_connect.py" in text, (
         "названа беда, но не назван выход:\n%s" % text)
-    for word in ("VPN", "пароль", "3 минуты"):
+    assert "vk_auth.py --kate" not in text, (
+        "объяснение ошибки снова ведёт на запрещённый вход:\n%s" % text)
+    for word in ("VPN", "пароль"):
         assert word in text, "в объяснении нет «%s»:\n%s" % (word, text)
     assert "ошибка 5" in text, (
         "сырая формулировка ВК пропала — если за кодом однажды окажется другая "
@@ -541,7 +574,9 @@ def test_error_1051_points_at_the_token_format():
         vkc = importlib.reload(importlib.import_module("vkcarousel"))
         for code in (15, 1051):
             text = vkc.vk_error_text(code, "Access denied")
-            assert "vk1.a." in text and "vk_auth.py --kate" in text, text
+            assert "vk1.a." in text, text
+            assert "smmbox_connect.py" in text and "vk_auth.py --kate" not in text, (
+                "1051 снова отправляет клиента на запрещённый вход:\n%s" % text)
 
 
 def test_closed_method_is_still_recognised_by_check_post():
@@ -618,19 +653,19 @@ _TESTS = [
     test_alias_works_in_the_other_direction,
     test_vk_id_token_is_not_an_alias_of_kate,
     test_doctor_and_carousel_agree_on_the_same_box,
-    test_kate_link_asks_for_the_rights_carousel_needs,
-    test_kate_finish_writes_canonical_name_and_hides_the_key,
-    test_kate_finish_warns_when_key_expires,
-    test_kate_finish_explains_a_wrong_address,
-    test_kate_finish_relays_vk_refusal,
-    test_kate_needs_no_developer_registration,
-    test_kate_modes_never_touch_the_network,
-    test_doctor_ok_when_vk_connected,
-    test_doctor_warns_that_backup_key_dies_in_an_hour,
+    test_login_link_is_not_built_anymore,
+    test_key_from_that_login_is_not_written,
+    test_command_refuses_out_loud_and_with_code_2,
+    test_refusal_prints_on_a_russian_windows_console,
+    test_the_app_number_is_gone_from_the_code,
+    test_client_instructions_do_not_send_anyone_to_that_login,
+    test_doctor_no_longer_calls_the_old_vk_key_readiness,
+    test_doctor_sells_no_direct_vk_path_at_all,
     test_doctor_offers_one_command_when_vk_missing,
     test_doctor_no_longer_blames_ffmpeg_for_carousel,
-    test_manifest_asks_the_key_the_code_actually_reads,
-    test_wizard_asks_vk_key_once_for_both_modules,
+    test_wizard_cannot_ask_for_the_forbidden_vk_key,
+    test_wizard_drops_the_key_even_if_a_manifest_brings_it_back,
+    test_old_key_is_left_in_place_but_never_used,
     test_manifest_no_longer_asks_the_unanswerable,
     test_doctor_still_reads_the_legacy_keys,
     test_error_5_names_the_cause_and_the_fix,

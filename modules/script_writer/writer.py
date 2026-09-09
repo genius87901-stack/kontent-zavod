@@ -262,6 +262,20 @@ def _beat_say(stage: str, real_pool: list, key: str,
     минуту, чужой кейс он произнесёт в камеру и не заметит.
     """
     if stage == "case":
+        # ПРАВКА КЛИЕНТСКОЙ КОПИИ 09.09.2026 (НиколаевскТВ) — вернуть после
+        # обновления (ХЕНДОФФ.md, раздел 6а). Владелец просил чередовать ВСЕ
+        # кейсы книги, а не ставить один и тот же во все ролики. Логика чтения —
+        # в корневом anchor_bank.py, который обновление не затирает; ротацию
+        # делает штатный _pick_from_pool тем же ключом, что и остальные биты.
+        try:
+            import anchor_bank
+            pool = anchor_bank.cases()
+            if pool:
+                phrase = _pick_from_pool(pool, "case|%s" % key, used)
+                if phrase:
+                    return _as_say(phrase), "client"
+        except Exception:
+            pass
         anchor = (bib.get("anchor") or "").strip()
         if anchor:
             return _as_say(anchor), "client"

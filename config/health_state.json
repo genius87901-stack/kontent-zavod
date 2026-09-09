@@ -1,12 +1,12 @@
 {
-  "last_sent": 1788923933,
-  "last_attempt": 1788923685,
+  "last_sent": 1789010083,
+  "last_attempt": 1789009687,
   "attempts_today": 1,
-  "day": "2026-09-08",
-  "seq": 1,
-  "last_urgent_sig": "broken:engine-media=broken",
-  "last_urgent_sent": 1788923933,
-  "last_urgent_check": 1788923930,
-  "urgent_day": "2026-09-08",
+  "day": "2026-09-09",
+  "seq": 2,
+  "last_urgent_sig": "broken:engine-media=timeout",
+  "last_urgent_sent": 1789010083,
+  "last_urgent_check": 1789010079,
+  "urgent_day": "2026-09-09",
   "urgent_today": 1
 }

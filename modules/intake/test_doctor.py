@@ -25,6 +25,7 @@ import json
 import os
 import subprocess
 import sys
+import shutil
 import tempfile
 import threading
 from pathlib import Path
@@ -227,7 +228,10 @@ def test_repair_creates_exactly_the_new_v3_folders():
                  gdrive / "КонтентЗавод" / "1 Сырьё" / "Нарезка из эфиров"]
         for d in новые:
             if d.exists():
-                d.rmdir()
+                # rmtree, не rmdir: ensure_structure кладёт в каждую папку
+                # памятку «ЧТО СЮДА КЛАСТЬ.txt», и rmdir по непустой падал
+                # OSError-ом — тест был красным у каждого клиента.
+                shutil.rmtree(d)
         code, out = _run_doctor(_gdrive_box(tmp, str(gdrive)))
         assert code == 0, "доктор не довёл структуру: " + out
         for d in новые:

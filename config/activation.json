@@ -12,11 +12,11 @@
   },
   "license_b64": "eyJjdXN0b21lciI6ItCQ0L3RgtC+0L0g0JDRhdGC0Y/QvNC+0LIiLCJlZGl0aW9uIjoic3RhbmRhcmQiLCJleHBpcmVzIjpudWxsLCJpc3N1ZWRfYXQiOiIyMDI2LTA4LTI1VDA5OjQxOjA5LjE2NDAyNCswMDowMCIsImxpY2Vuc2VfaWQiOiJLWi1GTTFLRC1OWVNURy1NMTNHMSIsInNjaGVtYSI6Miwic2VhdHMiOjJ9",
   "sig_b64": "+JBXuBOzt4oCi/0IK4dvN8ilddQIwDCSuFcUmcdmCVDqvYvEb+72d6wIb3VuYreakTQ1lsvS1hcoGqelz6msDQ==",
-  "fingerprint": "c864cddaac69f48948e18211c45e98c422a28b544706b7c7d5e457f1d3ab7d4f",
+  "fingerprint": "fe21bfb33252e86910f30e3cf276319dfd125e909f8415ffd5d090cc56ac255c",
   "fingerprint_weak": false,
   "seat": 1,
-  "ts": 1788924565,
+  "ts": 1789010662,
   "server_status": null,
   "last_checkin_ts": null,
-  "integrity": "71b955f2cbe7b4323845f30b94872e296f23f10c5c9d4f389ddb5c28c8c9980b"
+  "integrity": "a493a553cafb901d5986c348c8f5c79c61b9c99818b297a44fdfd625d8ca311d"
 }

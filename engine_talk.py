@@ -3412,7 +3412,13 @@ def render(video_path, transcript_path, out, acc_name=None, fmt="B",
                 sub_hit_default=sub_hit_default,
                 sub_hit_actual=sub_hit_actual,
                 sub_lifts=sub_lifts, sub_reduce=sub_reduce,
-                seam_y=(VH // 2 if split else None),
+                # ЛОКАЛЬНАЯ ПРАВКА (дефект 17, 09.09.2026): шов существует только
+                # тогда, когда в ролике есть хоть одна вставка. При стиле с
+                # pace.max_broll=0 (формат СУБТИТРЫ) сплит-сцен нет ни одной,
+                # кадр полнокадровый — шва в видео физически нет, а
+                # checks.verify_talk по непустому seam_y блокировал выпуск
+                # претензией «граница режет лицо». Условие `and ins` это снимает.
+                seam_y=(VH // 2 if (split and ins) else None),
                 # E4-25: фактический кегль субтитра (для замера ×3: 74→222) и
                 # метрика «голова в кадре» для compare (доля кадров + мин. запас).
                 sub_px=size if cues else None,

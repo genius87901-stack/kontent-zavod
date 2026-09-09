@@ -25,6 +25,7 @@ W, H, M = e.W, e.H, e.M
 BG = (242, 240, 235)     # #F2F0EB
 INK = (23, 23, 26)       # #17171A
 LEFT = (150, 146, 140)   # приглушённый серый — сторона «как все»
+EYEBROW_GAP = 46         # надзаголовок над блоком заголовка обложки
 
 _UNB_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fonts", "Unbounded")
 _GOLOS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fonts", "GolosText",
@@ -83,15 +84,23 @@ def cover(hook, photo_key, acc, out, i=1, n=4):
     img = Image.alpha_composite(img, ov).convert("RGB")
     d = ImageDraw.Draw(img)
 
-    fe = golos(22, 700)
-    d.text((M, H - 260), "КАК ВСЕ VS КАК НАДО", font=fe, fill=(230, 228, 222))
     fst = e.font("SemiBold", 22)
     d.text((W - M - d.textlength("%d/%d" % (i, n), font=fst), 58),
            "%d/%d" % (i, n), font=fst, fill=(255, 255, 255))
 
     bw = W - 2 * M
     fh, lines, lh = _fit(d, hook, bw, hi=58, lo=38, max_lines=3)
-    top = y = H - 200 - len(lines) * lh
+    y = H - 200 - len(lines) * lh
+
+    #: НАДЗАГОЛОВОК СЧИТАЕТСЯ ОТ БЛОКА ЗАГОЛОВКА, А НЕ ПО ФИКСИРОВАННОЙ ТОЧКЕ.
+    # Стояло d.text((M, H - 260), ...) — жёсткая координата, пока блок
+    # заголовка растёт вверх от H - 200 по числу строк. Последняя строка
+    # заголовка всегда садилась на надзаголовок, при заголовке в одну строку
+    # они совпадали почти буква в букву (поймано глазами на out_c96/01.png,
+    # 09.09.2026). Ставим над блоком с зазором — при любом числе строк.
+    fe = golos(22, 700)
+    top = y - EYEBROW_GAP
+    d.text((M, top), "КАК ВСЕ VS КАК НАДО", font=fe, fill=(230, 228, 222))
     for line in lines:
         d.text((M, y), line, font=fh, fill=(255, 255, 255))
         y += lh

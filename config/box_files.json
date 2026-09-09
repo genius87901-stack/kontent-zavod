@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-08T19:15:43",
+  "updated_at": "2026-09-09T21:08:28",
   "files": {
     "engine4.py": {
       "sha": "53cac433250b5fb4409ca8929141a14950e092d01dec4f6bfd3f0e0486b8da58",
@@ -14,8 +14,8 @@
       "txt": "313a33beb048f35ba63d026ac6abb1f26c92291bac0c8458103708f51e251657"
     },
     "CLAUDE.md": {
-      "sha": "99084ba8f6e2180ac9c267cf95fd67dee461c238d788415b614549a7da4a52f3",
-      "txt": "2a999c970be6f68c688f80b6f7300a7732e8439c79a0dbef4cfa080e30ec4f87"
+      "sha": "d6ab7086df5392f38a974192423f87ecc81cf1a5ad32d601243b9b17c8ef99e8",
+      "txt": "d6ab7086df5392f38a974192423f87ecc81cf1a5ad32d601243b9b17c8ef99e8"
     },
     "КАК_УСТАНОВИТЬ.md": {
       "sha": "e4bcf835397aa3deedb882cbc26e4e481f5893f25bce3fab787fd4c22ce99b31",
@@ -26,8 +26,8 @@
       "txt": "99c930963403391e68ee9038a8aacc9df5063000236c0945c9744846770b7c5a"
     },
     "СТОРИС.md": {
-      "sha": "d0d0f0986defa05aa8569810a928dbde345be584d047bab412b2aec7237977eb",
-      "txt": "1b219d657c8ebdf4aee7717b273be683f3bd9f9d423299c41dea2c4bf6be489b"
+      "sha": "c2044c708bcac03c3b0294d17256a8eb24be9ed7f075ec6df9dac0eb5b713537",
+      "txt": "02c8a17066c5a7da2a753bcfbf489d43d2e31ec392a69b7b5f000c7218aa32c8"
     },
     "modules/content_plan/carousel_bridge.py": {
       "sha": "92a8c29e27e0ff024f42bfaaa823ee8dc02530b9ef49a4ba4e6cd1e14e3fc066",
@@ -90,8 +90,8 @@
       "txt": "7755945a1171cdaf403b4cae5414ff1dafd2dcc6f468f71d49f9823010e06af6"
     },
     "modules/story_publisher/doctor.py": {
-      "sha": "6020457e1b1121f742215a8624578c31fff484c80da2e3290eded718cc766d6a",
-      "txt": "d37b06d41710f2a8906dfe12fdff6a2ae37314e66e7e318fea3ebf4ff4020404"
+      "sha": "0a4493f1630472368122100b99f448cc909e8d3dfb2035cc088bca90b7f2cb7b",
+      "txt": "318bb3aa2ee4fb3483c8235467d8c672748d4d0c6d1d1be752b60782d6da0aba"
     },
     "modules/story_publisher/drivers/__init__.py": {
       "sha": "bd5a0d01b17e1368e0dbcc87081c4249a160f4b2131a995c463601ad058ba966",
@@ -106,12 +106,12 @@
       "txt": "8802f4d28f85df9927d5ffab0e63112b375b955359147351958f128544cc17f0"
     },
     "modules/story_publisher/drivers/vk.py": {
-      "sha": "6b02d8e958fd2468a8bc32d704f4aa86669523151b616df78767d78e5a06a0d4",
-      "txt": "eb1c0ee08493a5e4a17811181f23b62ed9cf3f8bda6f6c960c1601097a8533c8"
+      "sha": "b6751815558d2cccdb96dfccf4a35b25457628149b6057768c88d54aed6b242c",
+      "txt": "b5a678cbb1a27de565413f722a6593b7a351f92eb43d4163e5c96ab75c4f0ad4"
     },
     "modules/story_publisher/module.manifest.json": {
-      "sha": "deae76d7f74e38c05f911e98c6ad869dea2ed585bba260761b9fc511f31bd7c6",
-      "txt": "54ecd93a1b9af1bcc382efe27facd3961b20519fe540a7a102b93dcec2870758"
+      "sha": "c9dfea331a88e168846346f0f2ea45d1c70f8c6436af948f48c9e61a50dad221",
+      "txt": "cc1876f50f36a144c7704891244a2d011d5c46d19d5cf9b22e53dae4b87aab3d"
     },
     "modules/story_publisher/paths.py": {
       "sha": "55ecf2a1d55d824a474686b78f1eb603f1770f6304346911be5cad4bf9f092a2",
@@ -134,8 +134,8 @@
       "txt": "0781a98539a7b489518702eec7f7f1a16dd3225c527fac39030861576bc8e702"
     },
     "modules/story_publisher/test_doctor.py": {
-      "sha": "c5be9eab052ecfc2d3a49c92996d3cb42246b62ac2c4edc17e9a359d2e1b397c",
-      "txt": "52755fe3be7da5468da2e53c9e28870cbf314d4b00c5f972d525ad2b29d9e459"
+      "sha": "328e055a7d5e00ae38e3320dd57ead07d4b7684a879a435a40f6d15b502e19f9",
+      "txt": "4eacdbc7bdd1cc58ef0eacfa15e8303898bb946fcd37bc9332bddd2e01e1c52e"
     },
     "smmbox_connect.py": {
       "sha": "5013207393881280d6406a0a163eff885ffe468f79c99f5ae9b8458f058a70f1",
@@ -154,19 +154,19 @@
       "txt": "fc8150f47955f7564fe7b2c0a6740182e3b3c426371fc76e77b8007e0532839e"
     },
     "vk_auth.py": {
-      "sha": "d6fa5b7f0a59cc6b7e89d023636b926cda746a5ae06990a82a6349cdee2f8d18",
-      "txt": "260c9d9bad7ab92b597422b91f5922d12c0b0853a67b839c541df0086c614fa7"
+      "sha": "3eff5fa9af9805ba9c5dcbab9bf813cc7a64a73a9bbfc9c79532d5c3fc156f54",
+      "txt": "90298fcad08dbaa55f30e10b678be80456c71ff1a6dd276e1a4414975b8324e3"
     },
     "ученикам/05a_БАНК_ШАБЛОНОВ.md": {
-      "sha": "83a1217040d2f7f6dcc98955d0a2b278cff14cd5abf5f4e90fff40bc40fdbbca",
-      "txt": "767c67ab6170c8ccda2a35881b1d4b5d1550b2a711e864736e961eaf0e6a1cfd"
+      "sha": "0d815b0ac7848b0b706d25b2a1f9f0808fc2811985e4684e7ab52f9a23c61976",
+      "txt": "0d815b0ac7848b0b706d25b2a1f9f0808fc2811985e4684e7ab52f9a23c61976"
     },
     "github_backup.py": {
       "sha": "4333f9eba0d2242e63d9089f9cf13dbabd220ab3bc079a9e010c3a7097694f45",
       "txt": "23880acc96a7b82926467918e7d951d6926951571037a5f5842206bded2841d6"
     },
     "updater.py": {
-      "sha": "c85c93904707233df4b4e0fada7381654472bc3dbd8a9e175c6dfb4d68383511",
+      "sha": "53eded7152677d5da6fd864470cfe901b68859445a2c3e59371e4550057ff569",
       "txt": "53eded7152677d5da6fd864470cfe901b68859445a2c3e59371e4550057ff569"
     },
     "autopost.py": {
@@ -194,27 +194,27 @@
       "txt": "b18acb53f3a329727fd529414aaadf26019620e6fd63b3b0fecc6aedefc01a23"
     },
     "daily_report.py": {
-      "sha": "00326d2cd342e32b2346c1639c6c08aedb90bafe1beb54ed04ccc70a882d84ce",
+      "sha": "dcc78db0aa9050d39bf0534ca9e800a5855465a4dba32dba85e1a8b8b3c84cf4",
       "txt": "dcc78db0aa9050d39bf0534ca9e800a5855465a4dba32dba85e1a8b8b3c84cf4"
     },
     "engine_brutalist.py": {
-      "sha": "4edc872bdb63a718b259d7d3c1f87290d4b841a056be3e7205ae8ef15fdfc0b3",
+      "sha": "4987cab03ca2547c0b983782a30f1a5ee8fdd6237ae80dcc2da8da9078cbe1d1",
       "txt": "4987cab03ca2547c0b983782a30f1a5ee8fdd6237ae80dcc2da8da9078cbe1d1"
     },
     "engine_checklist.py": {
-      "sha": "9c388da6df4f88093bc2eed94a3f0f1dc6717f7220a300afb1fcd9133862a647",
+      "sha": "ae3c5f51a33d9f4f27eb214e51453d54b876cb741896b4778695612468797ee5",
       "txt": "ae3c5f51a33d9f4f27eb214e51453d54b876cb741896b4778695612468797ee5"
     },
     "engine_cinematic.py": {
-      "sha": "5502e284c11d476b17164902c647a479b7dfc04e040b55bca8fe33a0e0a65d64",
+      "sha": "b768dc82344094292263ce21cd7115f7ee9b3ef35ebea701d6809b9fe4616abe",
       "txt": "b768dc82344094292263ce21cd7115f7ee9b3ef35ebea701d6809b9fe4616abe"
     },
     "engine_cream.py": {
-      "sha": "cfc53c69b30d0ab8d8056797db3502e88671c3518bd1374e49b3e64933694db1",
+      "sha": "c37524e58a8f1b17e52aa17206e54b8e66e3431dd0c40da336494701e07aa69c",
       "txt": "c37524e58a8f1b17e52aa17206e54b8e66e3431dd0c40da336494701e07aa69c"
     },
     "engine_data.py": {
-      "sha": "695106dc1ecdbefd7e22811abbb1376497f265f46a964e114d05bc612b8c0c9c",
+      "sha": "bb6eb2a3628b595701d43872f987083ed63dae5690a332a23879672f15a667da",
       "txt": "bb6eb2a3628b595701d43872f987083ed63dae5690a332a23879672f15a667da"
     },
     "engine_editorial.py": {
@@ -226,15 +226,15 @@
       "txt": "7c97d4b2133cde6294f63935cb1ec31b93a15d5e59be4e935e15e18704d18554"
     },
     "engine_meme.py": {
-      "sha": "8fe9b11545d4ed634d3bb40386f0c96ff0eb6bd9424f5f41627a4fec6bd2e051",
+      "sha": "36bc40d56afe3bbe189750a8712a006e1b47935f86672ff71ae7f9921a35a5e1",
       "txt": "36bc40d56afe3bbe189750a8712a006e1b47935f86672ff71ae7f9921a35a5e1"
     },
     "engine_minimal.py": {
-      "sha": "c9aa4acee511d3cac38c13fd85ab42c8abdd9d4cc9aeabb1c8cbb211f6b00948",
+      "sha": "445c8f82a2f2274d105f73dff3ff401142514fd5e52e37d2f7ec7e6f3c5a5c36",
       "txt": "445c8f82a2f2274d105f73dff3ff401142514fd5e52e37d2f7ec7e6f3c5a5c36"
     },
     "engine_panorama.py": {
-      "sha": "1c83dd0ad6e0147dee60194abb59b00d94be33901fab68bef153b6b651ab80b4",
+      "sha": "bbebd518f5190d508cf891e2000920f6540fb900fa0394d0f8d8b219e8556ea5",
       "txt": "bbebd518f5190d508cf891e2000920f6540fb900fa0394d0f8d8b219e8556ea5"
     },
     "engine_photo.py": {
@@ -242,23 +242,23 @@
       "txt": "b169c1a7d8e6be565fd0bd01c78ffb082232739b8ec547954ef6cfdcc35108d7"
     },
     "engine_quote.py": {
-      "sha": "381a37d01ea8f77e4fec2fd26fca7ee9e04c646b49f30b6a97e418305e74a055",
+      "sha": "08764d1088278bff37e49123333b854467203b6f2e96709b473e4db98d60ea3a",
       "txt": "08764d1088278bff37e49123333b854467203b6f2e96709b473e4db98d60ea3a"
     },
     "engine_scrapbook.py": {
-      "sha": "f31e239148e0ad9d290991061a339e34ee2469ffe91b4dfd3abbfdc80ae05da3",
+      "sha": "bd723857f769e81f870edd89bba2f1c9f4a5886e35448836ffe2995a02f3e1cb",
       "txt": "bd723857f769e81f870edd89bba2f1c9f4a5886e35448836ffe2995a02f3e1cb"
     },
     "engine_split.py": {
-      "sha": "00ebf0f87d50fb39aef5d0fa0ccb53d569005333253e629f57a6a7b67dc85cc3",
-      "txt": "af2a4176ed1802a72562f52d39760669ed3b89b6401340a460f53f000ce5cb66"
+      "sha": "f27577f8f519c422bc2e6c552e17347d9995f12f67e327c355dd4cde6a5fa9e3",
+      "txt": "0d34a965c8ef64ebf660ee979d8c7a37fae2a419d53d07d226ed8d3dd231be05"
     },
     "engine_sticker.py": {
-      "sha": "8d4fe1c857e37aa3e6e5dffe6913000aacbb0d050c783cdee12b30da3f7fb0a5",
+      "sha": "66f6f76cc0e5ecda12542f0efe07471f23e71a31231dfe0cc3e52963ae38692b",
       "txt": "66f6f76cc0e5ecda12542f0efe07471f23e71a31231dfe0cc3e52963ae38692b"
     },
     "engine_swiss.py": {
-      "sha": "e4663bcd650ba681529af520e90beaaeb969f73e81c33d3f3bd633e6cdaa64dc",
+      "sha": "32c8984fef98111d54b8aff72ed1ddbdeeede950200a8b6bd857227a3e73d0b4",
       "txt": "32c8984fef98111d54b8aff72ed1ddbdeeede950200a8b6bd857227a3e73d0b4"
     },
     "engine_talk.py": {
@@ -270,7 +270,7 @@
       "txt": "70eb68b0dcb69538bd6bb6fecc437d1e82ad48422c058e4920af695e30ba2d5d"
     },
     "engine_white.py": {
-      "sha": "db05763b7b461e641c29b4feb927de6b83144a27b92d20e650aabf76be3a61c2",
+      "sha": "2de1301b6869a3e4bbb9caefe0568f3e3cb2cb3da5b0639908a2f3224898ec9c",
       "txt": "f10f01b2b6d85fb81239f1ab5b2e4c0a8d3303f20331ca471e5a36fde56b1749"
     },
     "fal_connect.py": {
@@ -282,7 +282,7 @@
       "txt": null
     },
     "fonts/Caveat/OFL.txt": {
-      "sha": "6be75733f5ff1e7eb72f147f489db88752c890c9c70292be8e2460d7ef77f5bb",
+      "sha": "1f9d81d094273d82f3898a1ee8b598a717d050ecbf5ff7bede105b704880157b",
       "txt": "1f9d81d094273d82f3898a1ee8b598a717d050ecbf5ff7bede105b704880157b"
     },
     "fonts/CormorantGaramond/CormorantGaramond-Italic.ttf": {
@@ -294,7 +294,7 @@
       "txt": null
     },
     "fonts/CormorantGaramond/OFL.txt": {
-      "sha": "b2306305139223cbc000c2b9feffaa741687056066c227ba34de31c98eda0814",
+      "sha": "60700d351cac4650c51f3f9db318d2a420f8b45052dba2715eb5fec41f0f6956",
       "txt": "60700d351cac4650c51f3f9db318d2a420f8b45052dba2715eb5fec41f0f6956"
     },
     "fonts/GolosText/GolosText-Variable.ttf": {
@@ -318,7 +318,7 @@
       "txt": null
     },
     "fonts/JetBrainsMono/OFL.txt": {
-      "sha": "ef2870fd9ccb5f68d6b89aba72c3b30a27ab66f317b41d8c2c048693236bee01",
+      "sha": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d",
       "txt": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d"
     },
     "fonts/Manrope/Manrope-Variable.ttf": {
@@ -334,7 +334,7 @@
       "txt": null
     },
     "fonts/MarckScript/OFL.txt": {
-      "sha": "7fb08b4f43bd1ce0dcb7fa50a2c69676c9fdf5aa40dcf8790efa9f5e8fdcc329",
+      "sha": "f22a2beea88d631a620b15683fd03e79f13ad3297ad97fa5e42283c0b1a3a038",
       "txt": "f22a2beea88d631a620b15683fd03e79f13ad3297ad97fa5e42283c0b1a3a038"
     },
     "fonts/Montserrat/Montserrat-Regular.ttf": {
@@ -346,7 +346,7 @@
       "txt": null
     },
     "fonts/Montserrat/OFL.txt": {
-      "sha": "41cbef8d8a37b9e58a3c613a8958014bfc58801569c40211dfb251f600c6d718",
+      "sha": "8b7141c03fa4f8d44e6345d5d4931709290f0f67875e452e95ac1fd3a027802e",
       "txt": "8b7141c03fa4f8d44e6345d5d4931709290f0f67875e452e95ac1fd3a027802e"
     },
     "fonts/NotoSerif/NotoSerif-Bold.ttf": {
@@ -370,7 +370,7 @@
       "txt": null
     },
     "fonts/Nunito/OFL.txt": {
-      "sha": "656f26016ddc144bc5f77951bc9c3dd4e3b4fc3dcf1c37ac1c4d6f7bf75e3cee",
+      "sha": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
       "txt": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65"
     },
     "fonts/OFL-Onest.txt": {
@@ -398,7 +398,7 @@
       "txt": null
     },
     "fonts/PTSerif/OFL.txt": {
-      "sha": "a4c860d54438b2b424019a0ca55dab8473891c144ee9ce651867b906c381b39f",
+      "sha": "ddf311c28ddf5a5ad9747649837346b67bed9d356789c3072bb27dbce49e514d",
       "txt": "ddf311c28ddf5a5ad9747649837346b67bed9d356789c3072bb27dbce49e514d"
     },
     "fonts/PTSerif/PTSerif-Regular.ttf": {
@@ -406,7 +406,7 @@
       "txt": null
     },
     "fonts/PlayfairDisplay/OFL.txt": {
-      "sha": "ffdcfcc83d9335ec5c0bcf7ba2b2cbfbaade71571949fd8e529f914d7045dd4c",
+      "sha": "566be814f8e96e93dfa16101331557eb6b5467e9e03f627c0910fe93ca12300e",
       "txt": "566be814f8e96e93dfa16101331557eb6b5467e9e03f627c0910fe93ca12300e"
     },
     "fonts/PlayfairDisplay/PlayfairDisplay-Black.ttf": {
@@ -438,7 +438,7 @@
       "txt": null
     },
     "fonts/Unbounded/OFL.txt": {
-      "sha": "aac6b47ff0107ff0bba66244f245b61f34093ada2c715e22f847c7e43acacc2a",
+      "sha": "31e5d4e83955e7103c34570dd49b0570ef490800bd65b42923c0dd02445263b3",
       "txt": "31e5d4e83955e7103c34570dd49b0570ef490800bd65b42923c0dd02445263b3"
     },
     "fonts/Unbounded/Unbounded-Black.ttf": {
@@ -450,11 +450,11 @@
       "txt": null
     },
     "health_report.py": {
-      "sha": "cb766b4d4e50b492e42670179129e7082516e3bb38215a586dbd7bea810a1d3a",
+      "sha": "4575fcb6d3e8265406b19160080f341e5f23d82b8065038c4e90ca6ef46f1d72",
       "txt": "4575fcb6d3e8265406b19160080f341e5f23d82b8065038c4e90ca6ef46f1d72"
     },
     "import_photos.py": {
-      "sha": "e72a734c441cefa048a3471b5e88568909402fb8abd4aa5a4dd607a887b4c045",
+      "sha": "f81e96772aca719e23350fc5962821bf97463750afe7878a886cfe687f063e4f",
       "txt": "f81e96772aca719e23350fc5962821bf97463750afe7878a886cfe687f063e4f"
     },
     "install/README.md": {
@@ -462,7 +462,7 @@
       "txt": "6a403dd1de9848d019de63751c37a64374a1fa6fb662fdc829c1bcb15c336e36"
     },
     ".claude/settings.json": {
-      "sha": "01bfd0ba388586cb4cf34e1deb61032063773122ded1c2b19ec8e8d7d5cee461",
+      "sha": "c97444c585b1c3cb61292db87a3758f008097fc1ecca80c8b7767bebc7493aad",
       "txt": "c97444c585b1c3cb61292db87a3758f008097fc1ecca80c8b7767bebc7493aad"
     },
     "zavod.cmd": {
@@ -554,8 +554,8 @@
       "txt": "3aa9919db0306bf0bc32fa83fad2f61169b137bdea2a749ae0440bb7c9292819"
     },
     "install/questions.py": {
-      "sha": "adb6df0aafd73a0290bcbeb5111890ed0e0b2d9c987365a2017df8c896122306",
-      "txt": "20006a24a8cc3455d9791158c581e9567a2c57db495587ae0176c54af2a42489"
+      "sha": "510d2764a2bbc24ada48701891979470e7ed89d2d8dccc07614561c91dbb6871",
+      "txt": "510d2764a2bbc24ada48701891979470e7ed89d2d8dccc07614561c91dbb6871"
     },
     "install/run_doctors.py": {
       "sha": "5d076d95634ca5ee7ef657e964a9dc96141f1cc80aea8b8cac4b1717549ace7f",
@@ -582,7 +582,7 @@
       "txt": "322573cea1870222b81b2c7c0024110947a61eef7ea6f4786e1bf758125b5181"
     },
     "installer/schedule_report.py": {
-      "sha": "39d8a9be589e3c23c0c1caa40630993021bda741b679e132770a2be1ac5f32af",
+      "sha": "4baccec88abc7557e789f5575ec9bffd81eff852dc5b5aa2d03613561b4e37a4",
       "txt": "4baccec88abc7557e789f5575ec9bffd81eff852dc5b5aa2d03613561b4e37a4"
     },
     "inter/extras/ttf/Inter-Bold.ttf": {
@@ -618,7 +618,7 @@
       "txt": "894e64c1204bd37a2098767d9f85b8d54a380a1b77e8447a01478ae8051f3f7f"
     },
     "media_watch.py": {
-      "sha": "4ce6f66c384f8ef6f05aaedf4a46ecb52d30663c67d933fdb4c7386b82b92502",
+      "sha": "90b31d557ff17624f3662d182df0bacdc78948d9a96a2da5a8eb4e2e9562b5ab",
       "txt": "90b31d557ff17624f3662d182df0bacdc78948d9a96a2da5a8eb4e2e9562b5ab"
     },
     "modules/analytics/DESIGN.md": {
@@ -854,8 +854,8 @@
       "txt": "1500c1526bfa7e94e13a7dbcea97b0417d1a0843a2b2a7a90b18d86181a60105"
     },
     "modules/intake/test_doctor.py": {
-      "sha": "2b9987a2547ec665e4c3048aeafdec69346c06e3a54bdc75d4393af97f8a93af",
-      "txt": "966c8d798bb52c11c8a943579f5063789a0ab174b664a8a95db72da9e74cf3d2"
+      "sha": "5fc7ab5ce30f6abb86c9e8a4446d640910e341b14e3b1b1ddf1adc2944cdb640",
+      "txt": "5fc7ab5ce30f6abb86c9e8a4446d640910e341b14e3b1b1ddf1adc2944cdb640"
     },
     "modules/intake/test_pull.py": {
       "sha": "5d54dd5a2527d1ee5f3058e9be1e959bee05582622cfafdf30c7033b88b82b4b",
@@ -894,24 +894,24 @@
       "txt": "de55a11da1d81c915e35ff45f60f1f484d6da275c99cbfc3496106696c1c9c51"
     },
     "modules/publishing/doctor.py": {
-      "sha": "bef468a0fa149886d93b86f1c9eea43e956c708ea5b9783547b1b59c1634744d",
-      "txt": "d69f4f054f248da3ae8c87d733e0fdebe865c6481b9ac6eb6ee56e01c6300b1d"
+      "sha": "29f3aaeb003716e6845f0c6277d575b3bfd4f5eae70a842b6e0e362565084cab",
+      "txt": "3dde096cb2970ce86fa6d813fe241f775905e15ccc6b52aa7db2da878a09882b"
     },
     "modules/publishing/module.manifest.json": {
-      "sha": "ed94051431e9396d3def1163cdbbd026a3901fb37a3de2af9576cb1e8fca4232",
-      "txt": "549e4aa6f9a020b824775c7ae88e8fcece333fcc8960358810a86f48966cf94e"
+      "sha": "47cb9d720a831bb786646ab26e36a609d55d9a623b4a0ca6ea778a00ea7e4c0e",
+      "txt": "a91e844656ea04b1fc0ddd8ddb7c71357d35d58d4996152115d51ff90c68b0e2"
     },
     "modules/publishing/test_doctor.py": {
-      "sha": "9a4245d54de56904d8dfa01a73dd62657b70704e893fa7eba3edee58e8123823",
-      "txt": "1774ee3adb94953d62b77468c8638997a3143919a65a6bf445129b0e943b0fec"
+      "sha": "8dd1415844e502ce536ac9b94297703fe45b7df2122f90c6ee7599a7829603ac",
+      "txt": "8dd1415844e502ce536ac9b94297703fe45b7df2122f90c6ee7599a7829603ac"
     },
     "modules/publishing/test_tiktok_visible.py": {
       "sha": "6316597a742cbe3f85a0bde640107d3701eb3850fd881eb6e0ddb70ecf565474",
       "txt": "2bd0b7403dfcf67f37f88f238a59224e4dd0da68dfe3360c69e6f8ba68dd7300"
     },
     "modules/publishing/test_vk_keys.py": {
-      "sha": "1d92f556b7d089462595dd5443f2c9673bacfd9f57cbd0f9c3a2e37244fec3d0",
-      "txt": "3a8251d955f9700281d674ca929c4ed572da9d1c27ba88a6d1caaf2c92103b79"
+      "sha": "74e34ef54fde41e9f17828c7b514a60ce3155bcec7f2eef1abd1dcb0f1dbf8d7",
+      "txt": "a5037dde5cfee0fc728fb669c94e681c1708b08e892ad8bebf9c1f48865b4faa"
     },
     "modules/publishing/tiktok_visible.py": {
       "sha": "4eeb73df2dc4c267642df8d4955f11401c83d3740830efb9517eecd174a9ab55",
@@ -1018,7 +1018,7 @@
       "txt": "ea32c2b3630d0eed180f354e02e58b8681e6566024ef158015d4657ff93dd3ac"
     },
     "music_preview.py": {
-      "sha": "b90e26b5b542c95c0107808e0fe48812ac6563c8837f826257a405a01b3c95d7",
+      "sha": "9bed38708018d6dcdaa4be76434fab2e1fc6e4eb7e2cd40c0eb0f8f744beea32",
       "txt": "9bed38708018d6dcdaa4be76434fab2e1fc6e4eb7e2cd40c0eb0f8f744beea32"
     },
     "publish_queue.py": {
@@ -1034,7 +1034,7 @@
       "txt": "fd4e520c7dd62ac2cd76327118412751b17c35637da1f6704a915ed64219811b"
     },
     "skills/bio/SKILL.md": {
-      "sha": "ad4f65d99e56a58c19b29178db3c394c8cf4f4f65914d5e121e81740c9c859a1",
+      "sha": "eef278146e49910eece6483b053540e4f95e6efc41ea14121dce3eb106549e23",
       "txt": "eef278146e49910eece6483b053540e4f95e6efc41ea14121dce3eb106549e23"
     },
     "skills/chatbot/SKILL.md": {
@@ -1126,8 +1126,8 @@
       "txt": "791e269188ae359d50fd726b43c32768d770be909898d6f6f30e7957e150bcd0"
     },
     "styles/make_bank_catalog.py": {
-      "sha": "b28429bdbb96263c544d156ea9a2de662a8e151ab40d8e96db01eccf47b02153",
-      "txt": "80f151b0cff7c7004d649d6757d23ab7d774dc2b77a7335cb034551c3d48da2e"
+      "sha": "a3d10f0a5ad44f0bd4ab306f79f7d495901b1af931153b81c46654346091b808",
+      "txt": "a3d10f0a5ad44f0bd4ab306f79f7d495901b1af931153b81c46654346091b808"
     },
     "styles/make_previews.py": {
       "sha": "b4555c4430546acdcbcf1537af56ca1fd9de4fc7e3a1769391a16b02c8755de5",
@@ -1246,7 +1246,7 @@
       "txt": "a31db0091711d2f86fc2570727b55788b7d2e9f4c7d41cfc5a3ff6d2c1c33eb2"
     },
     "tg_report.py": {
-      "sha": "7af749238c0deef0fd16eee90119ecc05f4b4ca8ecb8d6e7cf08e38562cf09e9",
+      "sha": "8871a4dd2204d6556bfb10515fecebe4ce14849141e3609982e1930ddb0ee395",
       "txt": "8871a4dd2204d6556bfb10515fecebe4ce14849141e3609982e1930ddb0ee395"
     },
     "tg_send.py": {
@@ -1258,20 +1258,20 @@
       "txt": "208cfa3e6a01f259178b440f3c671035d5ba04016ff4df96ed4c16d98b864248"
     },
     "video_sheet.py": {
-      "sha": "1722f61414b45c24fc8779c11643cf33ad699b76e09a7d7b4c914805c592d6f2",
+      "sha": "f7e313cd34fdbfcfe32c994f1e0bb7630479082adcf1656e39c2ef2d0b5ca2d5",
       "txt": "f7e313cd34fdbfcfe32c994f1e0bb7630479082adcf1656e39c2ef2d0b5ca2d5"
     },
     "vk_wall_post.py": {
-      "sha": "ec462aa7729bb5ef2a5a659cc19efbf002191bce8b16c7fffbc0493c06a56fb7",
-      "txt": "bb9023cc76098d08325d45c142891e3cf1b79c8c5c94ce6509a67156f1baa5a8"
+      "sha": "0198f53705dbd77d26bf209174e1a14b865a2b609524efd07a62c06f35f9a444",
+      "txt": "987408631f363932435bcf8cde3ca3cb9e14ea387f0e7923a7da4413a764da61"
     },
     "vkcarousel.py": {
-      "sha": "f2c8747c65c4ff54707a91e3754b9a9187805bed40c0c58f26aeceda56109ec7",
-      "txt": "6d1084bee79e398f8ddfba6a584d8602940013b3510dc3986910a2ac1302bb0e"
+      "sha": "54c254fb2a2dcd56ab763d84c8df1936390729128b86b3bb8416e40cfa52fc00",
+      "txt": "73440746a5af1aae9e879de552321b696e957ae0a96ef24609e2419e32c0865d"
     },
     "vkpost.py": {
-      "sha": "d596b18af9b804f9eaa83bc137c5a240ebaa1ec1a840b699039301210453715c",
-      "txt": "6ff62a3a44aeae47585ba287f1cb3b65c60dc712576c594c2c602a0396d54a40"
+      "sha": "287d18c70c1fa699f34e7386a5357bc388904a6183813c0b6a7f07f7afc76810",
+      "txt": "0f95369ff916d94fdcd0d55af72d1176dae05b4345c4a3ffa086c82345a7434c"
     },
     "zavod_multi.py": {
       "sha": "bad2423cd69f3d79bc3348d21d52abb13f8b21ae66a036e9eb09ce95525cb741",
@@ -1298,7 +1298,7 @@
       "txt": "e3f188564648b37ef1e2fc9d6ce6002d244f0295136e87dff5f3163226856a62"
     },
     "ученикам/BANK_SHABLONOV.jpg": {
-      "sha": "6d694badc80af8c28d7f80c50679ab7c6fd404efc3b9bc398bedc050a135a095",
+      "sha": "9b3c2c8bebe290238dbfc7055f1b4188db8c8d0b83856e0903947043ea0a3808",
       "txt": null
     },
     "ученикам/tg_segmenter/AGENT.md": {

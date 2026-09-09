@@ -472,6 +472,20 @@ def wizard_questions(root: Path, ov: dict, prev: dict, keys: list[str],
     return out
 
 
+#: Ключи, которые мастер НЕ СПРАШИВАЕТ И НЕ ЗАПИСЫВАЕТ ни при каких условиях.
+#:
+#: 08.09.2026. Прямой ключ ВК добывался входом через чужое мобильное приложение,
+#: и этот вход запрещён: после него ВКонтакте блокирует аккаунт клиента целиком,
+#: а снять блокировку может только сам владелец аккаунта. Одного запрета в
+#: инструкциях мало — у клиентов на руках старые письма и лист самопроверки,
+#: которые ведут «подключи ВК». Пока мастер готов записать ключ, запрет
+#: обходится в один вопрос. Здесь он не обходится.
+#:
+#: Ключ, полученный РАНЬШЕ, продолжает читаться из `.env`: замок стоит на
+#: ЗАПИСИ нового, а не на чтении старого — чужие настройки не выдёргиваем.
+BLOCKED_KEYS = {"vk_user_token_kate", "vk_stories_token", "vk_user_token"}
+
+
 def collect(root: Path, plan: dict, only_keys: set[str] | None,
             with_wizard: list[str]) -> list[dict]:
     ov = overlay(root)
@@ -482,6 +496,13 @@ def collect(root: Path, plan: dict, only_keys: set[str] | None,
     for q in plan.get("config_questions", []) or []:
         key = canon(q.get("key", ""))
         if not key or key in seen:
+            continue
+        if key in BLOCKED_KEYS:
+            # Молча пропустить нельзя: вопрос вернули осознанно, и тот, кто это
+            # сделал, должен увидеть причину, а не гадать, куда делся вопрос.
+            print("  ⚠️ вопрос «%s» пропущен: ключ запрещён к настройке "
+                  "(прямой вход в ВК блокирует аккаунт клиента). "
+                  "ВКонтакте подключается через smmbox_connect.py" % key)
             continue
         if only_keys is not None and key not in only_keys:
             continue

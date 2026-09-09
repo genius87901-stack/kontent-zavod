@@ -148,18 +148,32 @@ def test_all_platforms_filled_returns_0():
 
 # --- код 2: урезанный режим ---------------------------------------------------
 
-def test_missing_vk_token_returns_2_not_0():
-    """Не заполнен токен ВК — деградация обязана дойти до кода возврата."""
+def test_vk_personal_page_is_reported_closed_not_unconfigured():
+    """Личная страница ВК закрыта запретом — доктор говорит это словами.
+
+    Раньше тут стояло обратное: нет ключа ВК → код 2 «урезанный режим», чтобы
+    деградация дошла до владельца. С 08.09.2026 ключа не существует как задачи:
+    добыть его можно было только прямым входом, после которого ВКонтакте
+    блокирует аккаунт клиента. Незакрываемая ветка в `limits` сделала бы код 2
+    вечным у всех, и деградация перестала бы что-либо значить — поэтому путь
+    объявляется закрытым словами, а не кодом.
+
+    А вот чего доктор делать НЕ ДОЛЖЕН ни при каких условиях — звать клиента
+    подключать ВК напрямую. Именно этим он раньше и заканчивал.
+    """
     filled = dict(_ALL_FILLED)
     filled.pop("vk_user_token_kate")
     with _box(filled=filled, ffmpeg=True):
         code, out = _run()
     _no_stacktrace(out)
-    assert code == 2, ("незаполненный токен площадки — это 2 (урезанный режим), "
-                       "а доктор дал %s. При 0 владелец никогда не узнает, что "
-                       "сторис в ВК не публикуются:\n%s" % (code, out))
-    assert "УРЕЗАННОМ РЕЖИМЕ" in out
-    assert "ВКонтакте" in out
+    assert "ВКонтакте" in out and "закрыт" in out, (
+        "доктор не сказал, что путь на личную страницу ВК закрыт:\n%s" % out)
+    assert "vk_auth.py" not in out and "--kate" not in out, (
+        "доктор снова ведёт клиента на запрещённый вход:\n%s" % out)
+    assert "сммбокс" in out.lower() or "smmbox" in out.lower(), (
+        "закрыли путь и не назвали работающий — клиент пойдёт искать обход:"
+        "\n%s" % out)
+    assert "УРЕЗАННОМ РЕЖИМЕ" not in out or code == 2, out
 
 
 def test_nothing_filled_returns_2_not_1():
@@ -347,8 +361,10 @@ def test_manifest_asks_for_every_key_doctor_demands():
     if publishing.exists():
         asked |= {q["key"].lower() for q in json.loads(
             publishing.read_text(encoding="utf-8-sig")).get("config_questions", [])}
-    for key in ("tg_bot_token", "upload_post_api_key", "upload_post_user",
-                "vk_user_token_kate"):
+    # vk_user_token_kate из списка УБРАН 08.09.2026: путь на личную страницу ВК
+    # закрыт запретом, доктор этот ключ больше не требует, и мастер обязан о
+    # нём не спрашивать — добыть его можно было только запрещённым входом.
+    for key in ("tg_bot_token", "upload_post_api_key", "upload_post_user"):
         assert key in asked, (
             "доктор требует ключ %s, а мастер установки о нём не спрашивает — "
             "клиент не сможет закрыть эту ветку никогда" % key)
@@ -358,7 +374,7 @@ def test_manifest_asks_for_every_key_doctor_demands():
 
 def _run_all():
     test_all_platforms_filled_returns_0()
-    test_missing_vk_token_returns_2_not_0()
+    test_vk_personal_page_is_reported_closed_not_unconfigured()
     test_nothing_filled_returns_2_not_1()
     test_missing_ffmpeg_returns_2()
     test_broken_install_root_returns_1()
