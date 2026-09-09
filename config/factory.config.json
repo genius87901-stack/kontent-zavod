@@ -8,5 +8,8 @@
   "speech_recognition": "yes",
   "tg_chat_id": "-1004477990623",
   "daily_report_enabled": "да",
-  "daily_report_time": "20:00"
+  "daily_report_time": "20:00",
+  "carousel_logo": "логотип.png",
+  "carousel_logo_scale": 0.13,
+  "carousel_logo_corner": "br"
 }
